@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 2.22367
       objectReference: {fileID: 0}
+    - target: {fileID: 5807647867638262886, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6462722326504137769, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: 0.4641527

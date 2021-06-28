@@ -32,11 +32,6 @@ namespace MetroidvaniaTools
 
         protected virtual bool MovementPressed()
         {
-
-            if (isJumping)
-            {
-                return true;
-            }
             if (Input.GetAxis("Horizontal") != 0)
             {
                 horizontalInput = Input.GetAxis("Horizontal");

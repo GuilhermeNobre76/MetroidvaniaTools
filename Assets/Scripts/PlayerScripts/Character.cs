@@ -15,9 +15,6 @@ namespace MetroidvaniaTools
         [HideInInspector]
         public bool isGrounded;
 
-        [HideInInspector]
-        static public bool isJumping; // Desta forma, a variável é partilhada por ambos os scripts Jump.cs e HorizontalMovement.cs
-
         private Vector2 facingLeft;
 
         // Start is called before the first frame update
