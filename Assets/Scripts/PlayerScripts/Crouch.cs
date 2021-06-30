@@ -31,7 +31,7 @@ namespace MetroidvaniaTools
 
         protected virtual void FixedUpdate()
         {
-            CrouchHeld();
+            Crouching();
         }
 
         protected virtual bool CrouchHeld()
