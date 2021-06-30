@@ -14,6 +14,8 @@ namespace MetroidvaniaTools
         public bool isFacingLeft;
         [HideInInspector]
         public bool isGrounded;
+        [HideInInspector]
+        public bool isCrouching;
 
         private Vector2 facingLeft;
 
