@@ -29,7 +29,6 @@ namespace MetroidvaniaTools
         {
 
             MovementPressed();
-            SprintingHeld();
         }
 
         public virtual bool MovementPressed()
@@ -41,17 +40,6 @@ namespace MetroidvaniaTools
             }
             else
                 return false;
-        }
-        protected virtual bool SprintingHeld()
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
         protected virtual void FixedUpdate()
         {
@@ -108,13 +96,17 @@ namespace MetroidvaniaTools
 
         protected virtual void SpeedMultiplier()
         {
-            if (SprintingHeld())
+            if (input.SprintingHeld())
             {
                 currentSpeed *= sprintMultiplier;
             }
             if (character.isCrouching)
             {
                 currentSpeed *= crouchSpeedMultiplier;
+            }
+            if (character.isWallSliding)
+            {
+                currentSpeed = 0;
             }
             if(!character.isFacingLeft && CollisionCheck(Vector2.right, .05f, jump.collisionLayer) || character.isFacingLeft && CollisionCheck(Vector2.left, .05f, jump.collisionLayer))
             {

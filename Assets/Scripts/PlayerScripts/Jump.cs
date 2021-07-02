@@ -35,13 +35,17 @@ namespace MetroidvaniaTools
         protected float gravity;
         [SerializeField]
         protected float wallJumpTime;
+
         public LayerMask collisionLayer;
 
         private bool isJumping;
         private bool isWallJumping;
+        private bool justWallJumped;
+        private bool flipped;
         private int numberOfJumpsLeft;
         private float jumpCountDown;
         private float fallCountDown;
+        private float wallJumpCountdown;
 
         protected override void Initialization()
         {
@@ -49,16 +53,16 @@ namespace MetroidvaniaTools
             numberOfJumpsLeft = maxJumps;
             jumpCountDown = buttonHoldTime;
             fallCountDown = glideTime;
+            wallJumpCountdown = wallJumpTime;
         }
         protected virtual void Update()
         {
-            JumpPressed();
-            JumpHeld();
+            CheckForJump();
         }
 
-        protected virtual bool JumpPressed()
+        protected virtual bool CheckForJump()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (input.JumpPressed())
             {
                 if (!character.isGrounded && numberOfJumpsLeft == maxJumps)
                 {
@@ -72,7 +76,8 @@ namespace MetroidvaniaTools
                 }
                 if (character.isWallSliding)
                 {
-                    isWallSliding = true;
+                    wallJumpTime = wallJumpCountdown;
+                    isWallJumping = true;
                     return false;
                 }
                 numberOfJumpsLeft--;
@@ -83,15 +88,6 @@ namespace MetroidvaniaTools
                     isJumping = true;
                     fallCountDown = glideTime;
                 }
-                return true;
-            }
-            else
-                return false;
-        }
-        protected virtual bool JumpHeld()
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
                 return true;
             }
             else
@@ -120,7 +116,7 @@ namespace MetroidvaniaTools
         }
         protected virtual void Gliding()
         {
-            if(Falling(0) && JumpHeld())
+            if(Falling(0) && input.JumpHeld())
             {
                 fallCountDown -= Time.deltaTime;
                 if(fallCountDown > 0 && rb.velocity.y > acceptedFallSpeed)
@@ -134,7 +130,7 @@ namespace MetroidvaniaTools
         }
         protected virtual void AdditionalAir()
         {
-            if (JumpHeld())
+            if (input.JumpHeld())
             {
                 jumpCountDown -= Time.deltaTime;
                 if (jumpCountDown <= 0)
@@ -156,6 +152,7 @@ namespace MetroidvaniaTools
                 character.isGrounded = true;
                 numberOfJumpsLeft = maxJumps;
                 fallCountDown = glideTime;
+                justWallJumped = false;
             }
             else
             {
@@ -172,6 +169,13 @@ namespace MetroidvaniaTools
         {
             if ((!character.isFacingLeft && CollisionCheck(Vector2.right, distanceToCollider, collisionLayer) || character.isFacingLeft && CollisionCheck(Vector2.left, distanceToCollider, collisionLayer)) && movement.MovementPressed() && !character.isGrounded)
             {
+                if (justWallJumped)
+                {
+                    wallJumpTime = 0;
+                    justWallJumped = false;
+                    isWallJumping = false;
+                    movement.enabled = true;
+                }
                 return true;
             }
             return false;
@@ -180,13 +184,25 @@ namespace MetroidvaniaTools
         {
             if (WallCheck())
             {
+                if (!flipped)
+                {
+                    Flip();
+                    flipped = true;
+                }
                 FallSpeed(gravity);
                 character.isWallSliding = true;
+                anim.SetBool("WallSliding", true);
                 return true;
             }
             else
             {
                 character.isWallSliding = false;
+                anim.SetBool("WallSliding", false);
+                if(flipped && !isWallJumping)
+                {
+                    Flip();
+                    flipped = false;
+                }
                 return false;
             }
         }
@@ -203,15 +219,23 @@ namespace MetroidvaniaTools
                 {
                     rb.AddForce(Vector2.right * horizontalWallJumpForce);
                 }
-                StartCoroutine(WallJumped());
+                movement.enabled = false;
+                Invoke("JustWallJumped", .05f);
+            }
+            if(wallJumpTime > 0)
+            {
+                wallJumpTime -= Time.deltaTime;
+                if(wallJumpTime <= 0)
+                {
+                    movement.enabled = true;
+                    isWallJumping = false;
+                    wallJumpTime = 0;
+                }
             }
         }
-        protected virtual IEnumerator WallJumped()
+        protected virtual void JustWallJumped()
         {
-            movement.enabled = false;
-            yield return new WaitForSeconds(wallJumpTime);
-            movement.enabled = true;
-            isWallJumping = false;
+            justWallJumped = true;
         }
     }
 }

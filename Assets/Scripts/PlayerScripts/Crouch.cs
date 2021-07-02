@@ -34,18 +34,9 @@ namespace MetroidvaniaTools
             Crouching();
         }
 
-        protected virtual bool CrouchHeld()
-        {
-            if (Input.GetKey(KeyCode.X))
-            {
-                return true;
-            }
-            return false;
-        }
-
         protected virtual void Crouching()
         {
-            if (CrouchHeld() && character.isGrounded)
+            if (input.CrouchHeld() && character.isGrounded)
             {
                 character.isCrouching = true;
                 anim.SetBool("Crouching", true);
