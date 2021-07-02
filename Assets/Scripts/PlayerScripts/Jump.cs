@@ -19,6 +19,10 @@ namespace MetroidvaniaTools
         [SerializeField]
         protected float distanceToCollider;
         [SerializeField]
+        protected float horizontalWallJumpForce;
+        [SerializeField]
+        protected float verticalWallJumpForce;
+        [SerializeField]
         protected float maxJumpSpeed;
         [SerializeField]
         protected float maxFallSpeed;
@@ -30,9 +34,11 @@ namespace MetroidvaniaTools
         [Range(-2, 2)]
         protected float gravity;
         [SerializeField]
-        protected LayerMask collisionLayer;
+        protected float wallJumpTime;
+        public LayerMask collisionLayer;
 
         private bool isJumping;
+        private bool isWallJumping;
         private int numberOfJumpsLeft;
         private float jumpCountDown;
         private float fallCountDown;
@@ -64,6 +70,11 @@ namespace MetroidvaniaTools
                     isJumping = false;
                     return false;
                 }
+                if (character.isWallSliding)
+                {
+                    isWallSliding = true;
+                    return false;
+                }
                 numberOfJumpsLeft--;
                 if(numberOfJumpsLeft >= 0)
                 {
@@ -91,6 +102,8 @@ namespace MetroidvaniaTools
             IsJumping();
             Gliding();
             GroundCheck();
+            WallSliding();
+            WallJump();
         }
 
         protected virtual void IsJumping()
@@ -154,6 +167,51 @@ namespace MetroidvaniaTools
                 }
             }
             anim.SetFloat("VerticalSpeed", rb.velocity.y);
+        }
+        protected virtual bool WallCheck()
+        {
+            if ((!character.isFacingLeft && CollisionCheck(Vector2.right, distanceToCollider, collisionLayer) || character.isFacingLeft && CollisionCheck(Vector2.left, distanceToCollider, collisionLayer)) && movement.MovementPressed() && !character.isGrounded)
+            {
+                return true;
+            }
+            return false;
+        }
+        protected virtual bool WallSliding()
+        {
+            if (WallCheck())
+            {
+                FallSpeed(gravity);
+                character.isWallSliding = true;
+                return true;
+            }
+            else
+            {
+                character.isWallSliding = false;
+                return false;
+            }
+        }
+        protected virtual void WallJump()
+        {
+            if (isWallJumping)
+            {
+                rb.AddForce(Vector2.up * verticalWallJumpForce);
+                if (!character.isFacingLeft)
+                {
+                    rb.AddForce(Vector2.left * horizontalWallJumpForce);
+                }
+                if (character.isFacingLeft)
+                {
+                    rb.AddForce(Vector2.right * horizontalWallJumpForce);
+                }
+                StartCoroutine(WallJumped());
+            }
+        }
+        protected virtual IEnumerator WallJumped()
+        {
+            movement.enabled = false;
+            yield return new WaitForSeconds(wallJumpTime);
+            movement.enabled = true;
+            isWallJumping = false;
         }
     }
 }

@@ -336,6 +336,7 @@ MonoBehaviour:
   isGrounded: 0
   isCrouching: 0
   isDashing: 0
+  isWallSliding: 0
   colliderMultiplier: 0.5
   layers:
     serializedVersion: 2
@@ -356,6 +357,7 @@ MonoBehaviour:
   isGrounded: 0
   isCrouching: 0
   isDashing: 0
+  isWallSliding: 0
   dashForce: 1000
   dashCooldownTime: 3
   dashAmountTime: 0.5
@@ -591,7 +593,7 @@ GameObject:
   - component: {fileID: 1943614169}
   - component: {fileID: 1943614168}
   - component: {fileID: 1943614167}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Platform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,6 +1048,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3891154916781815438, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
       propertyPath: gravity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891154916781815438, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
+      propertyPath: horizontalWallJumpForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891154916781815438, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
+      propertyPath: verticalWallJumpForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891154916781815438, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
+      propertyPath: wallJumpTime
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4216689954262949063, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
