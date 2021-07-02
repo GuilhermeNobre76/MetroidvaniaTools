@@ -6,16 +6,19 @@ namespace MetroidvaniaTools
 {
     public class Character : MonoBehaviour
     {
-        protected Collider2D col;
-        protected Rigidbody2D rb;
-        protected Animator anim;
-
         [HideInInspector]
         public bool isFacingLeft;
         [HideInInspector]
         public bool isGrounded;
         [HideInInspector]
         public bool isCrouching;
+        [HideInInspector]
+        public bool isDashing;
+
+        protected Collider2D col;
+        protected Rigidbody2D rb;
+        protected Animator anim;
+        protected HorizontalMovement movement;
 
         private Vector2 facingLeft;
 
@@ -30,6 +33,7 @@ namespace MetroidvaniaTools
             col = GetComponent<Collider2D>();
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            movement = GetComponent<HorizontalMovement>();
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 
