@@ -59,9 +59,13 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Character.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Jump.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Testing.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\ObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

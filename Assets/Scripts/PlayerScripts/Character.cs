@@ -23,6 +23,7 @@ namespace MetroidvaniaTools
         protected HorizontalMovement movement;
         protected Jump jump;
         protected InputManager input;
+        protected ObjectPooler objectPooler;
 
         private Vector2 facingLeft;
 
@@ -40,16 +41,16 @@ namespace MetroidvaniaTools
             movement = GetComponent<HorizontalMovement>();
             jump = GetComponent<Jump>();
             input = GetComponent<InputManager>();
+            objectPooler = ObjectPooler.Instance;
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-
         protected virtual void Flip()
         {
-            if(isFacingLeft || (!isFacingLeft && isWallSliding))
+            if (isFacingLeft || (!isFacingLeft && isWallSliding))
             {
                 transform.localScale = facingLeft;
             }
-            if(!isFacingLeft || (isFacingLeft && isWallSliding))
+            if (!isFacingLeft || (isFacingLeft && isWallSliding))
             {
                 transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             }
