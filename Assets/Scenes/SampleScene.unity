@@ -341,8 +341,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a11b935449689b4bb6af590fada312f, type: 2}
   gunBarrel: {fileID: 1874700226}
   gunRotation: {fileID: 1797859030}
-  currentPool:
-  - {fileID: 0}
+  currentPool: []
   currentProjectile: {fileID: 0}
 --- !u!114 &832383234
 MonoBehaviour:
