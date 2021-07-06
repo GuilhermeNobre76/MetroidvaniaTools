@@ -182,7 +182,11 @@ namespace MetroidvaniaTools
         }
         protected virtual bool WallSliding()
         {
-            if (WallCheck())
+            bool isTouchingWall = WallCheck();
+
+            Debug.Log("isTouchingWall=" + isTouchingWall);
+
+            if (isTouchingWall)
             {
                 if (!flipped)
                 {

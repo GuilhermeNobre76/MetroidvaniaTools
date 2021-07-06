@@ -24,6 +24,8 @@ namespace MetroidvaniaTools
         protected Jump jump;
         protected InputManager input;
         protected ObjectPooler objectPooler;
+        protected AimManager aimManager;
+        protected Weapon weapon;
 
         private Vector2 facingLeft;
 
@@ -41,6 +43,8 @@ namespace MetroidvaniaTools
             movement = GetComponent<HorizontalMovement>();
             jump = GetComponent<Jump>();
             input = GetComponent<InputManager>();
+            aimManager = GetComponent<AimManager>();
+            weapon = GetComponent<Weapon>();
             objectPooler = ObjectPooler.Instance;
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
