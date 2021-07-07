@@ -184,8 +184,6 @@ namespace MetroidvaniaTools
         {
             bool isTouchingWall = WallCheck();
 
-            Debug.Log("isTouchingWall=" + isTouchingWall);
-
             if (isTouchingWall)
             {
                 if (!flipped)

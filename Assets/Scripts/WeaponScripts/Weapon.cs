@@ -8,8 +8,7 @@ namespace MetroidvaniaTools
     {
         [SerializeField]
         protected List<WeaponTypes> weaponTypes;
-        [SerializeField]
-        protected Transform gunBarrel;
+        public Transform gunBarrel;
         [SerializeField]
         protected Transform gunRotation;
 
@@ -46,6 +45,7 @@ namespace MetroidvaniaTools
         protected virtual void FireWeapon()
         {
             currentTimeTillChangeArms = currentWeapon.lifeTime;
+            aimManager.ChangeArms();
             currentProjectile = objectPooler.GetObject(currentPool);
             if(currentProjectile != null)
             {
@@ -54,13 +54,26 @@ namespace MetroidvaniaTools
         }
         protected virtual void PointGun()
         {
-            if (!character.isFacingLeft)
+            if (!aimManager.aiming)
             {
-                aimManager.whereToAim.position = new Vector2(aimManager.bounds.max.x, aimManager.bounds.center.y);
-            }
-            else
-            {
-                aimManager.whereToAim.position = new Vector2(aimManager.bounds.min.x, aimManager.bounds.center.y);
+                if (!character.isFacingLeft)
+                {
+                    if (character.isWallSliding)
+                    {
+                        aimManager.whereToAim.position = new Vector2(aimManager.bounds.min.x, aimManager.bounds.center.y);
+                    }
+                    else
+                        aimManager.whereToAim.position = new Vector2(aimManager.bounds.max.x, aimManager.bounds.center.y);
+                }
+                else
+                {
+                    if (character.isWallSliding)
+                    {
+                        aimManager.whereToAim.position = new Vector2(aimManager.bounds.max.x, aimManager.bounds.center.y);
+                    }
+                    else
+                        aimManager.whereToAim.position = new Vector2(aimManager.bounds.min.x, aimManager.bounds.center.y);
+                }
             }
             aimManager.aimingGun.transform.GetChild(0).position = aimManager.whereToAim.position;
             aimManager.aimingLeftHand.transform.GetChild(0).position = aimManager.whereToPlaceHand.position;
@@ -76,11 +89,21 @@ namespace MetroidvaniaTools
             currentProjectile.SetActive(true);
             if (!character.isFacingLeft)
             {
-                currentProjectile.GetComponent<Projectile>().left = false;
+                if (character.isWallSliding)
+                {
+                    currentProjectile.GetComponent<Projectile>().left = true;
+                }
+                else
+                    currentProjectile.GetComponent<Projectile>().left = false;
             }
             else
             {
-                currentProjectile.GetComponent<Projectile>().left = true;
+                if (character.isWallSliding)
+                {
+                    currentProjectile.GetComponent<Projectile>().left = false;
+                }
+                else
+                    currentProjectile.GetComponent<Projectile>().left = true;
             }
             currentProjectile.GetComponent<Projectile>().fired = true;
         }

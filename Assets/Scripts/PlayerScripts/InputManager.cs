@@ -16,6 +16,16 @@ namespace MetroidvaniaTools
         protected KeyCode jump;
         [SerializeField]
         protected KeyCode weaponFired;
+        [SerializeField]
+        protected KeyCode upHeld;
+        [SerializeField]
+        protected KeyCode downHeld;
+        [SerializeField]
+        protected KeyCode tiltedUpHeld;
+        [SerializeField]
+        protected KeyCode tiltedDownHeld;
+        [SerializeField]
+        protected KeyCode aimingHeld;
 
         // Update is called once per frame
         void Update()
@@ -26,6 +36,11 @@ namespace MetroidvaniaTools
             JumpPressed();
             JumpHeld();
             WeaponFired();
+            UpHeld();
+            DownHeld();
+            TiltedUpHeld();
+            TiltedDownHeld();
+            AimingHeld();
         }
         public virtual bool CrouchHeld()
         {
@@ -76,6 +91,51 @@ namespace MetroidvaniaTools
         public virtual bool WeaponFired()
         {
             if (Input.GetKeyDown(weaponFired))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool UpHeld()
+        {
+            if (Input.GetKey(upHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool DownHeld()
+        {
+            if (Input.GetKey(downHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool TiltedUpHeld()
+        {
+            if (Input.GetKey(tiltedUpHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool TiltedDownHeld()
+        {
+            if (Input.GetKey(tiltedDownHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool AimingHeld()
+        {
+            if (Input.GetKey(aimingHeld))
             {
                 return true;
             }
