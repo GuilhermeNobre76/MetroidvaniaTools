@@ -26,6 +26,8 @@ namespace MetroidvaniaTools
         protected KeyCode tiltedDownHeld;
         [SerializeField]
         protected KeyCode aimingHeld;
+        [SerializeField]
+        protected KeyCode changeWeaponPressed;
 
         // Update is called once per frame
         void Update()
@@ -36,11 +38,13 @@ namespace MetroidvaniaTools
             JumpPressed();
             JumpHeld();
             WeaponFired();
+            WeaponFiredHeld();
             UpHeld();
             DownHeld();
             TiltedUpHeld();
             TiltedDownHeld();
             AimingHeld();
+            ChangeWeaponPressed();
         }
         public virtual bool CrouchHeld()
         {
@@ -97,6 +101,15 @@ namespace MetroidvaniaTools
             else
                 return false;
         }
+        public virtual bool WeaponFiredHeld()
+        {
+            if (Input.GetKey(weaponFired))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
         public virtual bool UpHeld()
         {
             if (Input.GetKey(upHeld))
@@ -136,6 +149,15 @@ namespace MetroidvaniaTools
         public virtual bool AimingHeld()
         {
             if (Input.GetKey(aimingHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool ChangeWeaponPressed()
+        {
+            if (Input.GetKeyDown(changeWeaponPressed))
             {
                 return true;
             }

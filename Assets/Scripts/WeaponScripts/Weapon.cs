@@ -12,23 +12,24 @@ namespace MetroidvaniaTools
         [SerializeField]
         protected Transform gunRotation;
 
+        [HideInInspector]
         public List<GameObject> currentPool = new List<GameObject>();
+        [HideInInspector]
+        public List<GameObject> bulletsToReset = new List<GameObject>();
+        [HideInInspector]
+        public List<GameObject> totalPools;
+
         public GameObject currentProjectile;
         public WeaponTypes currentWeapon;
         public float currentTimeTillChangeArms;
 
         private GameObject projectileParentFolder;
+        private float currentTimeBetweenShots;
 
         protected override void Initialization()
         {
             base.Initialization();
-            foreach(WeaponTypes weapon in weaponTypes)
-            {
-                GameObject newPool = new GameObject();
-                projectileParentFolder = newPool;
-                objectPooler.CreatePool(weapon, currentPool, projectileParentFolder);
-            }
-            currentWeapon = weaponTypes[0];
+            ChangeWeapon();
         }
         protected virtual void Update()
         {
@@ -36,20 +37,47 @@ namespace MetroidvaniaTools
             {
                 FireWeapon();
             }
+            if (input.ChangeWeaponPressed())
+            {
+                ChangeWeapon();
+            }
         }
         protected virtual void FixedUpdate()
         {
             PointGun();
             NegateTimeTillChangeArms();
+            FireWeaponHeld();
         }
         protected virtual void FireWeapon()
         {
             currentTimeTillChangeArms = currentWeapon.lifeTime;
             aimManager.ChangeArms();
-            currentProjectile = objectPooler.GetObject(currentPool);
+            currentProjectile = objectPooler.GetObject(currentPool, currentWeapon, this, projectileParentFolder, currentWeapon.projectile.tag);
             if(currentProjectile != null)
             {
                 Invoke("PlaceProjectile", .1f);
+            }
+            currentTimeBetweenShots = currentWeapon.timeBetweenShots;
+        }
+        protected virtual void FireWeaponHeld()
+        {
+            if (input.WeaponFiredHeld())
+            {
+                if (currentWeapon.automatic)
+                {
+                    currentTimeTillChangeArms = currentWeapon.lifeTime;
+                    aimManager.ChangeArms();
+                    currentTimeBetweenShots -= Time.deltaTime;
+                    if(currentTimeBetweenShots < 0)
+                    {
+                        currentProjectile = objectPooler.GetObject(currentPool, currentWeapon, this, projectileParentFolder, currentWeapon.projectile.tag);
+                        if (currentProjectile != null)
+                        {
+                            Invoke("PlaceProjectile", .1f);
+                        }
+                        currentTimeBetweenShots = currentWeapon.timeBetweenShots;
+                    }
+                }
             }
         }
         protected virtual void PointGun()
@@ -81,6 +109,54 @@ namespace MetroidvaniaTools
         protected virtual void NegateTimeTillChangeArms()
         {
             currentTimeTillChangeArms -= Time.deltaTime;
+        }
+        protected virtual void ChangeWeapon()
+        {
+            bool matched = new bool();
+            for(int i = 0; i < weaponTypes.Count; i++)
+            {
+                if(currentWeapon == null)
+                {
+                    currentWeapon = weaponTypes[0];
+                    currentTimeBetweenShots = currentWeapon.timeBetweenShots;
+                    currentProjectile = currentWeapon.projectile;
+                    NewPool();
+                    return;
+                }
+                else
+                {
+                    if(weaponTypes[i] == currentWeapon)
+                    {
+                        i++;
+                        if(i == weaponTypes.Count)
+                        {
+                            i = 0;
+                        }
+                        currentWeapon = weaponTypes[i];
+                        currentTimeBetweenShots = currentWeapon.timeBetweenShots;
+                    }
+                }
+            }
+            for(int i = 0; i < totalPools.Count; i++)
+            {
+                if(currentWeapon.projectile.tag == totalPools[i].tag)
+                {
+                    projectileParentFolder = totalPools[i].gameObject;
+                    currentProjectile = currentWeapon.projectile;
+                    matched = true;
+                }
+            }
+            if (!matched)
+            {
+                NewPool();
+            }
+        }
+        protected virtual void NewPool()
+        {
+            GameObject newPool = new GameObject();
+            projectileParentFolder = newPool;
+            objectPooler.CreatePool(currentWeapon, currentPool, projectileParentFolder, this);
+            currentProjectile = currentWeapon.projectile;
         }
         protected virtual void PlaceProjectile()
         {

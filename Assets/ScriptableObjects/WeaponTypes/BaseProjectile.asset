@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 8858061415062635015, guid: dcf00eafee9daa34191a3f056b95a7be, type: 3}
   projectileSpeed: 20
-  amountToPool: 20
+  amountToPool: 4
   lifeTime: 2
+  automatic: 1
+  timeBetweenShots: 0.3
+  canExpandPool: 0
+  canResetPool: 1

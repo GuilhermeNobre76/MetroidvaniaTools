@@ -76,7 +76,7 @@ namespace MetroidvaniaTools
             {
                 if(potentialTarget.tag == "Target")
                 {
-                    Vector3 directionToTarget = potentialTarget.transform.position = currentPosition;
+                    Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
                     float dSqrToTarget = directionToTarget.sqrMagnitude;
                     if(dSqrToTarget < closestDistanceSqr)
                     {
