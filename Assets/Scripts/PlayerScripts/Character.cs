@@ -9,6 +9,8 @@ namespace MetroidvaniaTools
         [HideInInspector]
         public bool isFacingLeft;
         [HideInInspector]
+        public bool isJumping;
+        [HideInInspector]
         public bool isGrounded;
         [HideInInspector]
         public bool isCrouching;
@@ -74,7 +76,7 @@ namespace MetroidvaniaTools
             }
             return false;
         }
-        protected virtual bool Falling(float velocity)
+        public virtual bool Falling(float velocity)
         {
             if (!isGrounded && rb.velocity.y < velocity)
             {

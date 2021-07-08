@@ -19,6 +19,7 @@ namespace MetroidvaniaTools
         private bool canDash;
         private float dashCountDown;
         private CapsuleCollider2D capsuleCollider2D;
+        private Vector2 deltaPosition;
 
         protected override void Initialization()
         {
@@ -33,6 +34,7 @@ namespace MetroidvaniaTools
         {
             if(input.DashPressed() && canDash)
             {
+                deltaPosition = transform.position;
                 dashCountDown = dashCooldownTime;
                 character.isDashing = true;
                 capsuleCollider2D.direction = CapsuleDirection2D.Horizontal;
@@ -97,6 +99,13 @@ namespace MetroidvaniaTools
             FallSpeed(1);
             movement.enabled = true;
             rb.velocity = new Vector2(0, rb.velocity.y);
+            RaycastHit2D[] hits = new RaycastHit2D[10];
+            yield return new WaitForSeconds(.1f);
+            hits = Physics2D.CapsuleCastAll(new Vector2(col.bounds.center.x, col.bounds.center.y + .05f), new Vector2(col.bounds.size.x, col.bounds.size.y - .1f), CapsuleDirection2D.Vertical, 0, Vector2.zero, 0, jump.collisionLayer);
+            if(hits.Length > 0)
+            {
+                transform.position = deltaPosition;
+            }
         }
         protected virtual IEnumerator TurnColliderBackOn(GameObject obj)
         {

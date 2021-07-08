@@ -70,6 +70,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Hook.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
