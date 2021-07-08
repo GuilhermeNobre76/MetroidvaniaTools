@@ -64,10 +64,12 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Hook.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

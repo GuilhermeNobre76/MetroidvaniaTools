@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2733881754117732155}
   - component: {fileID: 8848936292677933399}
   - component: {fileID: -5105753579445393662}
+  - component: {fileID: 6106533940664843926}
   m_Layer: 0
-  m_Name: BaseProjectile
-  m_TagString: BaseProjectile
+  m_Name: GrapplingHookProjectile
+  m_TagString: GrapplingHook
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +28,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8858061415062635015}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4677887, y: -2.252585, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.008258371, w: -0.9999659}
+  m_LocalPosition: {x: -0.11801967, y: 1.6202264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 687c7801dd3ba954ba6fef1d6ad1cebb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03e56eeccc564614fba6052431c8b0c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.15}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.4, y: 0.15}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,7 +145,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22289eee1c141a249b68e2e6fefcf721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 6a11b935449689b4bb6af590fada312f, type: 2}
-  fired: 0
+  weapon: {fileID: 11400000, guid: d7c04c212df86b64a9b722f989fc4db9, type: 2}
+  fired: 1
   left: 0
-  projectileLifeTime: 2
+  projectileLifeTime: 1
+--- !u!114 &6106533940664843926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858061415062635015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff71fa414d5263468e71f9e28b50fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+    serializedVersion: 2
+    m_Bits: 1024

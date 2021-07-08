@@ -14,6 +14,8 @@ namespace MetroidvaniaTools
         protected float sprintMultiplier;
         [SerializeField]
         protected float crouchSpeedMultiplier;
+        [SerializeField]
+        protected float hookSpeedMultiplier;
 
         private float acceleraion;
         private float currentSpeed;
@@ -44,6 +46,7 @@ namespace MetroidvaniaTools
         protected virtual void FixedUpdate()
         {
             Movement();
+            RemoveFromGrapple();
         }
         protected virtual void Movement()
         {
@@ -65,6 +68,18 @@ namespace MetroidvaniaTools
             SpeedMultiplier();
             anim.SetFloat("CurrentSpeed", currentSpeed);
             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+        }
+        protected virtual void RemoveFromGrapple()
+        {
+            if (grapplingHook.removed)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, Time.deltaTime * 500);
+                if(transform.rotation == Quaternion.identity)
+                {
+                    grapplingHook.removed = false;
+                    rb.freezeRotation = true;
+                }
+            }
         }
         protected virtual void CheckDirection()
         {
@@ -103,6 +118,19 @@ namespace MetroidvaniaTools
             if (character.isCrouching)
             {
                 currentSpeed *= crouchSpeedMultiplier;
+            }
+            if (grapplingHook.connected)
+            {
+                if(input.UpHeld() || input.DownHeld() || CollisionCheck(Vector2.right, .1f, jump.collisionLayer) || CollisionCheck(Vector2.left, .1f, jump.collisionLayer) || CollisionCheck(Vector2.down, .1f, jump.collisionLayer) || CollisionCheck(Vector2.up, .1f, jump.collisionLayer) || character.isGrounded)
+                {
+                    return;
+                }
+                currentSpeed *= hookSpeedMultiplier;
+                if(grapplingHook.hookTrail.transform.position.y > grapplingHook.objectConnectedTo.transform.position.y)
+                {
+                    currentSpeed *= -hookSpeedMultiplier;
+                }
+                rb.rotation -= currentSpeed;
             }
             if (character.isWallSliding)
             {

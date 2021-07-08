@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - BaseProjectile
+  - SecondWeapon
+  - GrapplingHook
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - Platform
   - PassableLayer
-  - 
+  - Hookable
   - 
   - 
   - 

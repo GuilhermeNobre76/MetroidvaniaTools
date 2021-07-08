@@ -26,6 +26,7 @@ namespace MetroidvaniaTools
         protected ObjectPooler objectPooler;
         protected AimManager aimManager;
         protected Weapon weapon;
+        protected GrapplingHook grapplingHook;
 
         private Vector2 facingLeft;
 
@@ -45,6 +46,7 @@ namespace MetroidvaniaTools
             input = GetComponent<InputManager>();
             aimManager = GetComponent<AimManager>();
             weapon = GetComponent<Weapon>();
+            grapplingHook = GetComponent<GrapplingHook>();
             objectPooler = ObjectPooler.Instance;
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
