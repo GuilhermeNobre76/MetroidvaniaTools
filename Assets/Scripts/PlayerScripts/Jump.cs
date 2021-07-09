@@ -63,6 +63,12 @@ namespace MetroidvaniaTools
         {
             if (input.JumpPressed())
             {
+                if(currentPlatform != null && currentPlatform.GetComponent<OneWayPlatform>() && input.DownHeld())
+                {
+                    character.isJumpingThroughPlatform = true;
+                    Invoke("NotJumpingThroughPlatform", .1f);
+                    return false;
+                }
                 if (!character.isGrounded && numberOfJumpsLeft == maxJumps)
                 {
                     character.isJumping = false;
@@ -206,6 +212,10 @@ namespace MetroidvaniaTools
                 }
                 return false;
             }
+        }
+        protected virtual void NotJumpingThroughPlatform()
+        {
+            character.isJumpingThroughPlatform = false;
         }
         protected virtual void WallJump()
         {

@@ -11,6 +11,8 @@ namespace MetroidvaniaTools
         [HideInInspector]
         public bool isJumping;
         [HideInInspector]
+        public bool isJumpingThroughPlatform;
+        [HideInInspector]
         public bool isGrounded;
         [HideInInspector]
         public bool isCrouching;
@@ -29,6 +31,7 @@ namespace MetroidvaniaTools
         protected AimManager aimManager;
         protected Weapon weapon;
         protected GrapplingHook grapplingHook;
+        protected GameObject currentPlatform;
 
         private Vector2 facingLeft;
 
@@ -71,6 +74,7 @@ namespace MetroidvaniaTools
             {
                 if((1 << hits[i].collider.gameObject.layer & collision) != 0)
                 {
+                    currentPlatform = hits[i].collider.gameObject;
                     return true;
                 }
             }
