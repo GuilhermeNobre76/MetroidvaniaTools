@@ -56,8 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerScripts\HorizontalMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Platforms\PlatformManager.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Hook.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Platforms\FallingPlatforms.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Testing.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Character.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
@@ -73,9 +76,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Platforms\PlatformManager.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Platforms\FallingPlatforms.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Platforms\Ladder.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Platforms\MoveablePlatform.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Platforms\PathEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

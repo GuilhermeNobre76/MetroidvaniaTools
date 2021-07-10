@@ -16,7 +16,12 @@ namespace MetroidvaniaTools
         protected float crouchSpeedMultiplier;
         [SerializeField]
         protected float hookSpeedMultiplier;
+        [SerializeField]
+        protected float ladderSpeed;
+        [HideInInspector]
+        public GameObject currentLadder;
 
+        protected bool above;
         private float acceleraion;
         private float currentSpeed;
         private float horizontalInput;
@@ -47,6 +52,7 @@ namespace MetroidvaniaTools
         {
             Movement();
             RemoveFromGrapple();
+            LadderMovement();
         }
         protected virtual void Movement()
         {
@@ -79,6 +85,47 @@ namespace MetroidvaniaTools
                     grapplingHook.removed = false;
                     rb.freezeRotation = true;
                 }
+            }
+        }
+        protected virtual void LadderMovement()
+        {
+            if(character.isOnLadder && currentLadder != null)
+            {
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                if(col.bounds.min.y >= (currentLadder.GetComponent<Ladder>().topOfLadder.y - col.bounds.extents.y))
+                {
+                    anim.SetBool("OnLadder", false);
+                    above = true;
+                }
+                else
+                {
+                    anim.SetBool("OnLadder", true);
+                    above = false;
+                }
+                if (input.UpHeld())
+                {
+                    anim.SetBool("ClimbingLadder", true);
+                    transform.position = Vector2.MoveTowards(transform.position, currentLadder.GetComponent<Ladder>().topOfLadder, ladderSpeed * Time.deltaTime);
+                    if (above)
+                    {
+                        anim.SetBool("ClimbingLadder", false);
+                    }
+                    return;
+                }
+                else
+                    anim.SetBool("ClimbingLadder", false);
+                if (input.DownHeld())
+                {
+                    anim.SetBool("ClimbingLadder", true);
+                    transform.position = Vector2.MoveTowards(transform.position, currentLadder.GetComponent<Ladder>().bottomOfLadder, ladderSpeed * Time.deltaTime);
+                    return;
+                }
+            }
+            else
+            {
+                anim.SetBool("OnLadder", false);
+                rb.bodyType = RigidbodyType2D.Dynamic;
             }
         }
         protected virtual void CheckDirection()
@@ -134,11 +181,14 @@ namespace MetroidvaniaTools
             }
             if (character.isWallSliding)
             {
-                currentSpeed = 0;
-            }
-            if(!character.isFacingLeft && CollisionCheck(Vector2.right, .05f, jump.collisionLayer) || character.isFacingLeft && CollisionCheck(Vector2.left, .05f, jump.collisionLayer))
-            {
                 currentSpeed = .01f;
+            }
+            if (currentPlatform != null && (!currentPlatform.GetComponent<OneWayPlatform>() || !currentPlatform.GetComponent<Ladder>()))
+            {
+                if (!character.isFacingLeft && CollisionCheck(Vector2.right, .05f, jump.collisionLayer) || character.isFacingLeft && CollisionCheck(Vector2.left, .05f, jump.collisionLayer))
+                {
+                    currentSpeed = .01f;
+                }
             }
         }
     }

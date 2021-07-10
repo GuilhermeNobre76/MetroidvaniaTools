@@ -153,6 +153,10 @@ namespace MetroidvaniaTools
         {
             if (CollisionCheck(Vector2.down, distanceToCollider, collisionLayer) && !character.isJumping)
             {
+                if (currentPlatform.GetComponent<MoveablePlatform>())
+                {
+                    transform.parent = currentPlatform.transform;
+                }
                 anim.SetBool("Grounded", true);
                 character.isGrounded = true;
                 numberOfJumpsLeft = maxJumps;
@@ -161,6 +165,7 @@ namespace MetroidvaniaTools
             }
             else
             {
+                transform.parent = null;
                 anim.SetBool("Grounded", false);
                 character.isGrounded = false;
                 if (character.Falling(0) && rb.velocity.y < maxFallSpeed)
@@ -174,6 +179,10 @@ namespace MetroidvaniaTools
         {
             if ((!character.isFacingLeft && CollisionCheck(Vector2.right, distanceToCollider, collisionLayer) || character.isFacingLeft && CollisionCheck(Vector2.left, distanceToCollider, collisionLayer)) && movement.MovementPressed() && !character.isGrounded)
             {
+                if (currentPlatform.GetComponent<OneWayPlatform>() || currentPlatform.GetComponent<Ladder>())
+                {
+                    return false;
+                }
                 if (justWallJumped)
                 {
                     wallJumpTime = 0;

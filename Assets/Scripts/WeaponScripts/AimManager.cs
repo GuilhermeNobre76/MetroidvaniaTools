@@ -104,6 +104,10 @@ namespace MetroidvaniaTools
         }
         public virtual bool DirectionalAim()
         {
+            if (character.isOnLadder)
+            {
+                return false;
+            }
             if (input.UpHeld())
             {
                 whereToAim.transform.position = new Vector2(bounds.center.x, bounds.max.y);
