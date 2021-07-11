@@ -15,12 +15,17 @@ namespace MetroidvaniaTools
         [SerializeField]
         protected float tValue;
 
+        protected float halfCameraX;
+        protected float halfCameraY;
+
         private float originalYAdjustment;
         private bool falling;
         protected override void Initialization()
         {
             base.Initialization();
             originalYAdjustment = yAdjustment;
+            halfCameraX = GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0, 0)).x;
+            halfCameraY = GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0, 0)).y;
         }
 
         protected virtual void FixedUpdate()
@@ -57,6 +62,7 @@ namespace MetroidvaniaTools
             {
                 transform.position = Vector3.Lerp(new Vector3(player.transform.position.x + -xAdjustment, player.transform.position.y + yAdjustment, player.transform.position.z - zAdjustment), transform.position, tValue);
             }
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMin - halfCameraX, xMax + halfCameraX), Mathf.Clamp(transform.position.y, yMin - halfCameraY, yMax + halfCameraY), -zAdjustment);
         }
     }
 }

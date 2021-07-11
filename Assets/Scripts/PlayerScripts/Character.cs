@@ -13,6 +13,8 @@ namespace MetroidvaniaTools
         [HideInInspector]
         public bool isJumpingThroughPlatform;
         [HideInInspector]
+        public bool isSwimming;
+        [HideInInspector]
         public bool isGrounded;
         [HideInInspector]
         public bool isCrouching;
@@ -34,6 +36,8 @@ namespace MetroidvaniaTools
         protected Weapon weapon;
         protected GrapplingHook grapplingHook;
         protected GameObject currentPlatform;
+        protected GameObject player;
+        protected GameManager gameManager;
 
         private Vector2 facingLeft;
 
@@ -54,6 +58,7 @@ namespace MetroidvaniaTools
             aimManager = GetComponent<AimManager>();
             weapon = GetComponent<Weapon>();
             grapplingHook = GetComponent<GrapplingHook>();
+            gameManager = FindObjectOfType<GameManager>();
             objectPooler = ObjectPooler.Instance;
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
@@ -94,6 +99,10 @@ namespace MetroidvaniaTools
         protected virtual void FallSpeed(float speed)
         {
             rb.velocity = new Vector2(rb.velocity.x, (rb.velocity.y * speed));
+        }
+        public void InitializePlayer()
+        {
+            player = FindObjectOfType<Character>().gameObject;
         }
     }
 }
