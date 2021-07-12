@@ -55,6 +55,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\Ladder.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\HorizontalMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PlatformManager.cs" />
@@ -66,7 +67,9 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Character.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\MoveablePlatform.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Jump.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Water.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
@@ -79,9 +82,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Wind.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Water.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Managers\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\SceneReference.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\NextScene.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\Door.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
