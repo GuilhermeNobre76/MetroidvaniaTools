@@ -70,21 +70,22 @@
     <Compile Include="Assets\Scripts\LevelScripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Water.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\SceneReference.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PathEditor.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\Door.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\Managers.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\NextScene.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Managers\SceneReference.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Managers\NextScene.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Managers\Door.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\WorldMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

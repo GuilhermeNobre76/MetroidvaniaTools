@@ -36,7 +36,7 @@ namespace MetroidvaniaTools
         protected virtual void CreatePlayer(GameObject initialPlayer, Vector3 location)
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            if(players.Length < 0)
+            if(players.Length > 0)
             {
                 foreach(GameObject obj in players)
                 {
