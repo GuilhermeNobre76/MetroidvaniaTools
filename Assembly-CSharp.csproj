@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PathEditor.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\WorldMap.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\Door.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
@@ -85,7 +86,8 @@
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\WorldMap.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

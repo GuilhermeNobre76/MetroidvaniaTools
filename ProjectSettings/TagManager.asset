@@ -8,6 +8,7 @@ TagManager:
   - BaseProjectile
   - SecondWeapon
   - GrapplingHook
+  - MiniMapCamera
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - PassableLayer
   - Hookable
   - Player
-  - 
-  - 
+  - MiniMapIcons
+  - LevelBorder
   - 
   - 
   - 

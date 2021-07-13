@@ -15,6 +15,7 @@ namespace MetroidvaniaTools
         [HideInInspector]
         public float yMax;
         protected GameObject player;
+        protected GameObject playerIndicator;
         protected Character character;
         protected LevelManager levelManager;
 
@@ -28,6 +29,7 @@ namespace MetroidvaniaTools
             player = FindObjectOfType<Character>().gameObject;
             character = player.GetComponent<Character>();
             levelManager = FindObjectOfType<LevelManager>();
+            playerIndicator = FindObjectOfType<PlayerBlip>().gameObject;
             xMin = levelManager.levelSize.min.x;
             xMax = levelManager.levelSize.max.x;
             yMin = levelManager.levelSize.min.y;

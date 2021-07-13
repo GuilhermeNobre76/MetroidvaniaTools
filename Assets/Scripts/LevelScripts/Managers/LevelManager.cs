@@ -14,23 +14,29 @@ namespace MetroidvaniaTools
 
         [SerializeField]
         protected List<Transform> availableSpawnLocations = new List<Transform>();
+        [SerializeField]
+        protected List<Transform> playerIndicatorSpawnLocations = new List<Transform>();
         private Vector3 startingLocation;
+        private Vector3 playerIndicatorLocation;
 
         protected virtual void Awake()
         {
             if(availableSpawnLocations.Count <= PlayerPrefs.GetInt("SpawnReference"))
             {
                 startingLocation = availableSpawnLocations[0].position;
+                playerIndicatorLocation = playerIndicatorSpawnLocations[0].position;
             }
             else
             {
                 startingLocation = availableSpawnLocations[PlayerPrefs.GetInt("SpawnReference")].position;
+                playerIndicatorLocation = playerIndicatorSpawnLocations[PlayerPrefs.GetInt("SpawnReference")].position;
                 CreatePlayer(initialPlayer, startingLocation);
             }
         }
         protected override void Initialization()
         {
             base.Initialization();
+            playerIndicator.transform.position = playerIndicatorLocation;
             StartCoroutine(FadeIn());
         }
         protected virtual void OnDisable()
