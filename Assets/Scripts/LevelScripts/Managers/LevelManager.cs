@@ -12,10 +12,9 @@ namespace MetroidvaniaTools
         public GameObject initialPlayer;
         public Image fadeScreen;
 
-        [SerializeField]
-        protected List<Transform> availableSpawnLocations = new List<Transform>();
-        [SerializeField]
-        protected List<Transform> playerIndicatorSpawnLocations = new List<Transform>();
+        public List<Transform> availableSpawnLocations = new List<Transform>();
+        public List<Transform> playerIndicatorSpawnLocations = new List<Transform>();
+
         private Vector3 startingLocation;
         private Vector3 playerIndicatorLocation;
 

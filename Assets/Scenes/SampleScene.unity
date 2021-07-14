@@ -200,7 +200,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -224,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82587011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 999.9, y: -501.4, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -379,7 +379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173712604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.02, y: -7.64, z: 0}
+  m_LocalPosition: {x: -55.14, y: -10.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 25234694}
@@ -761,6 +761,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &673907045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3307180908645532452, guid: e1f4db5825920284b95aa6efe9fd93f0, type: 3}
+  m_PrefabInstance: {fileID: 3307180908233775442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &673907047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673907045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce8c0233c8237c40b9330cb2332539d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMin: 0
+  xMax: 0
+  yMin: 0
+  yMax: 0
 --- !u!4 &747586617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5615714279333226276, guid: 958856b70ee870445996fa7120ca343c, type: 3}
@@ -1189,7 +1210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305258717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 994.74, y: -500.88, z: 0}
+  m_LocalPosition: {x: 994.56, y: -501.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 25234694}
@@ -1960,6 +1981,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3307180908645532453, guid: e1f4db5825920284b95aa6efe9fd93f0, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307180908645532457, guid: e1f4db5825920284b95aa6efe9fd93f0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bf15eeac65f9464089f009de429f8e4, type: 3}
+    - target: {fileID: 3307180908645532459, guid: e1f4db5825920284b95aa6efe9fd93f0, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

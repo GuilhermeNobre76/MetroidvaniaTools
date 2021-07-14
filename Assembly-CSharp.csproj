@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Water.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMap.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\SceneReference.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMap.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
