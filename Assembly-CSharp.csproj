@@ -89,6 +89,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMapFinder.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\BigMapFinder.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

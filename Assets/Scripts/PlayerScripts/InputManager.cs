@@ -28,6 +28,8 @@ namespace MetroidvaniaTools
         protected KeyCode aimingHeld;
         [SerializeField]
         protected KeyCode changeWeaponPressed;
+        [SerializeField]
+        protected KeyCode bigMapKey;
 
         // Update is called once per frame
         void Update()
@@ -45,6 +47,7 @@ namespace MetroidvaniaTools
             TiltedDownHeld();
             AimingHeld();
             ChangeWeaponPressed();
+            BigMapPressed();
         }
         public virtual bool CrouchHeld()
         {
@@ -158,6 +161,15 @@ namespace MetroidvaniaTools
         public virtual bool ChangeWeaponPressed()
         {
             if (Input.GetKeyDown(changeWeaponPressed))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool BigMapPressed()
+        {
+            if (Input.GetKeyDown(bigMapKey))
             {
                 return true;
             }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace MetroidvaniaTools
 {
+    //Manages everything for the mini-map camera to be in the correct room and make sure the camera is bound to that room as well
     public class MiniMap : Managers
     {
         protected GameObject currentScene;
@@ -22,14 +23,15 @@ namespace MetroidvaniaTools
             transform.position = currentScene.gameObject.transform.position;
             xMin = currentScene.GetComponent<WorldMap>().bounds.min.x + transform.position.x + transform.localPosition.x;
             yMin = currentScene.GetComponent<WorldMap>().bounds.min.y + transform.position.y + transform.localPosition.y;
-            xMax = currentScene.GetComponent<WorldMap>().bounds.min.x + transform.position.x + transform.localPosition.x;
-            yMax = currentScene.GetComponent<WorldMap>().bounds.min.y + transform.position.y + transform.localPosition.y;
+            xMax = currentScene.GetComponent<WorldMap>().bounds.max.x + transform.position.x + transform.localPosition.x;
+            yMax = currentScene.GetComponent<WorldMap>().bounds.max.y + transform.position.y + transform.localPosition.y;
             minCameraX = miniMapCamera.ViewportToWorldPoint(new Vector2(0, 0)).x;
             minCameraY = miniMapCamera.ViewportToWorldPoint(new Vector2(0, 0)).y;
-            minCameraX = miniMapCamera.ViewportToWorldPoint(new Vector2(1, 1)).x;
-            minCameraY = miniMapCamera.ViewportToWorldPoint(new Vector2(1, 1)).y;
+            maxCameraX = miniMapCamera.ViewportToWorldPoint(new Vector2(1, 1)).x;
+            maxCameraY = miniMapCamera.ViewportToWorldPoint(new Vector2(1, 1)).y;
         }
-        protected virtual void FixedUpdate()
+
+        protected virtual void LateUpdate()
         {
             transform.position = new Vector3(playerIndicator.transform.position.x, playerIndicator.transform.position.y, -10);
             transform.localPosition = new Vector3(Mathf.Clamp(transform.localPosition.x, xMin - minCameraX, xMax - maxCameraX), Mathf.Clamp(transform.localPosition.y, yMin - minCameraY, yMax - maxCameraY), -10);
