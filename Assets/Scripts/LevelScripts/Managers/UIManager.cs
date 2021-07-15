@@ -8,6 +8,7 @@ namespace MetroidvaniaTools
     {
         protected GameObject miniMap;
         protected GameObject bigMap;
+        protected float originalTimeScale;
 
         public bool bigMapOn;
 
@@ -23,8 +24,12 @@ namespace MetroidvaniaTools
             if (player.GetComponent<InputManager>().BigMapPressed())
             {
                 bigMapOn = !bigMapOn;
+                SwitchMaps();
             }
-            SwitchMaps();
+            if (bigMapOn)
+            {
+                MoveMap();
+            }
         }
         protected virtual void SwitchMaps()
         {
@@ -38,6 +43,29 @@ namespace MetroidvaniaTools
                 miniMap.SetActive(true);
                 bigMap.SetActive(false);
             }
+        }
+        protected virtual void MoveMap()
+        {
+            float vertical = new float();
+            float horizontal = new float();
+            if (input.UpHeld())
+            {
+                vertical = .25f;
+            }
+            if (input.DownHeld())
+            {
+                vertical = -.25f;
+            }
+            if (input.LeftHeld())
+            {
+                horizontal = -.25f;
+            }
+            if (input.RightHeld())
+            {
+                horizontal = .25f;
+            }
+            Vector3 currentPosition = bigMapCamera.transform.position;
+            bigMapCamera.transform.position = new Vector3(currentPosition.x + horizontal, currentPosition.y + vertical, -10);
         }
     }
 }

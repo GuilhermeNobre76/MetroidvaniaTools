@@ -14,10 +14,15 @@ namespace MetroidvaniaTools
         public float yMin;
         [HideInInspector]
         public float yMax;
+        [HideInInspector]
+        public bool gamePaused;
         protected GameObject player;
         protected GameObject playerIndicator;
+        protected GameObject bigMapCamera;
         protected Character character;
         protected LevelManager levelManager;
+        protected InputManager input;
+        protected UIManager uiManager;
 
         // Start is called before the first frame update
         void Start()
@@ -29,7 +34,10 @@ namespace MetroidvaniaTools
             player = FindObjectOfType<Character>().gameObject;
             character = player.GetComponent<Character>();
             levelManager = FindObjectOfType<LevelManager>();
+            input = player.GetComponent<InputManager>();
             playerIndicator = FindObjectOfType<PlayerBlip>().gameObject;
+            uiManager = FindObjectOfType<UIManager>();
+            bigMapCamera = FindObjectOfType<BigMap>().gameObject;
             xMin = levelManager.levelSize.min.x;
             xMax = levelManager.levelSize.max.x;
             yMin = levelManager.levelSize.min.y;

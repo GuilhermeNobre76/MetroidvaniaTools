@@ -55,9 +55,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\Ladder.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\HorizontalMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMapFinder.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PlatformManager.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Hook.cs" />
@@ -82,16 +85,14 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\BigMapFinder.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\Managers.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\NextScene.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMapFinder.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\BigMapFinder.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -21,6 +21,10 @@ namespace MetroidvaniaTools
         [SerializeField]
         protected KeyCode downHeld;
         [SerializeField]
+        protected KeyCode leftHeld;
+        [SerializeField]
+        protected KeyCode rightHeld;
+        [SerializeField]
         protected KeyCode tiltedUpHeld;
         [SerializeField]
         protected KeyCode tiltedDownHeld;
@@ -43,6 +47,8 @@ namespace MetroidvaniaTools
             WeaponFiredHeld();
             UpHeld();
             DownHeld();
+            LeftHeld();
+            RightHeld();
             TiltedUpHeld();
             TiltedDownHeld();
             AimingHeld();
@@ -125,6 +131,24 @@ namespace MetroidvaniaTools
         public virtual bool DownHeld()
         {
             if (Input.GetKey(downHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool LeftHeld()
+        {
+            if (Input.GetKey(leftHeld))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public virtual bool RightHeld()
+        {
+            if (Input.GetKey(rightHeld))
             {
                 return true;
             }
