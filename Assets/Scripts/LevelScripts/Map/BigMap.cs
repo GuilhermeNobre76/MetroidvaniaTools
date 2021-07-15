@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigMap : MonoBehaviour
+namespace MetroidvaniaTools
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BigMap : Managers
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        protected virtual void LateUpdate()
+        {
+            if (!uiManager.bigMapOn)
+            {
+                transform.position = new Vector3(playerIndicator.transform.position.x, playerIndicator.transform.position.y, -10);
+            }
+        }
     }
 }

@@ -12,6 +12,13 @@ namespace MetroidvaniaTools
         public GameObject initialPlayer;
         public Image fadeScreen;
 
+        protected FogOfWar[] fog;
+        protected List<FogOfWar> fogTiles = new List<FogOfWar>();
+        protected List<int> id = new List<int>();
+        protected int[] tileID;
+
+        public Transform fogSpawnLocation;
+        public GameObject fogOfWar;
         public List<Transform> availableSpawnLocations = new List<Transform>();
         public List<Transform> playerIndicatorSpawnLocations = new List<Transform>();
 
@@ -30,6 +37,8 @@ namespace MetroidvaniaTools
                 startingLocation = availableSpawnLocations[PlayerPrefs.GetInt("SpawnReference")].position;
                 playerIndicatorLocation = playerIndicatorSpawnLocations[PlayerPrefs.GetInt("SpawnReference")].position;
                 CreatePlayer(initialPlayer, startingLocation);
+                Instantiate(fogOfWar, fogSpawnLocation.position, Quaternion.identity);
+                fog = FindObjectsOfType<FogOfWar>();
             }
         }
         protected override void Initialization()
@@ -37,13 +46,32 @@ namespace MetroidvaniaTools
             base.Initialization();
             playerIndicator.transform.position = playerIndicatorLocation;
             StartCoroutine(FadeIn());
+            for(int i = 0; i < fog.Length; i++)
+            {
+                fogTiles.Add(fog[i]);
+            }
+            int[] numberArray = PlayerPrefsX.GetIntArray("TilesToRemove");
+            foreach(int number in numberArray)
+            {
+                id.Add(number);
+                Destroy(fogTiles[number].gameObject);
+            }
+        }
+        public virtual void RemoveFog(FogOfWar fogTile)
+        {
+            id.Add(fogTiles.IndexOf(fogTile));
+            Destroy(fogTile.gameObject);
         }
         protected virtual void OnDisable()
         {
+            tileID = id.ToArray();
+            PlayerPrefsX.SetIntArray("TilesToRemove", tileID);
             PlayerPrefs.SetInt("FacingLeft", character.isFacingLeft ? 1 : 0);
         }
         public virtual void NextScene(SceneReference scene, int spawnReference)
         {
+            tileID = id.ToArray();
+            PlayerPrefsX.SetIntArray("TilesToRemove", tileID);
             PlayerPrefs.SetInt("FacingLeft", character.isFacingLeft ? 1 : 0);
             PlayerPrefs.SetInt("SpawnReference", spawnReference);
             StartCoroutine(FadeOut(scene));

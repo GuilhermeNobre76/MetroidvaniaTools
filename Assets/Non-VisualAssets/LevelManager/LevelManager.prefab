@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1925740056803741628}
   - component: {fileID: 1925740056803741627}
   m_Layer: 0
-  m_Name: LevelManager 1
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,15 @@ MonoBehaviour:
   xMax: 0
   yMin: 0
   yMax: 0
+  gamePaused: 0
   levelSize:
-    m_Center: {x: -8.5, y: 16.5, z: 0}
-    m_Extent: {x: 42.73, y: 21.9, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 63, y: 12, z: 0}
   initialPlayer: {fileID: 1443110505493631608, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
   fadeScreen: {fileID: 0}
+  fogSpawnLocation: {fileID: 0}
+  fogOfWar: {fileID: 0}
   availableSpawnLocations:
+  - {fileID: 0}
+  playerIndicatorSpawnLocations:
   - {fileID: 0}

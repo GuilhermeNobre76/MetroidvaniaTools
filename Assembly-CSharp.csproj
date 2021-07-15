@@ -93,6 +93,8 @@
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\PlayerPrefsX.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\FogOfWar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

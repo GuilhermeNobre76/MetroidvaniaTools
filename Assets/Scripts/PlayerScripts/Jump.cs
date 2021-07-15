@@ -61,6 +61,10 @@ namespace MetroidvaniaTools
 
         protected virtual bool CheckForJump()
         {
+            if (gameManager.gamePaused)
+            {
+                return false;
+            }
             if (input.JumpPressed())
             {
                 if(currentPlatform != null && currentPlatform.GetComponent<OneWayPlatform>() && input.DownHeld())

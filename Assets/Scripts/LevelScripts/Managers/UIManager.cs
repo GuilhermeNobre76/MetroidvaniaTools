@@ -37,11 +37,16 @@ namespace MetroidvaniaTools
             {
                 miniMap.SetActive(false);
                 bigMap.SetActive(true);
+                gameManager.gamePaused = true;
+                originalTimeScale = Time.timeScale;
+                Time.timeScale = 0;
             }
             else
             {
                 miniMap.SetActive(true);
                 bigMap.SetActive(false);
+                gameManager.gamePaused = false;
+                Time.timeScale = originalTimeScale;
             }
         }
         protected virtual void MoveMap()

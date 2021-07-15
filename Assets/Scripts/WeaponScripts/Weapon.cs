@@ -32,6 +32,10 @@ namespace MetroidvaniaTools
         }
         protected virtual void Update()
         {
+            if (gameManager.gamePaused)
+            {
+                return;
+            }
             if (input.WeaponFired())
             {
                 FireWeapon();

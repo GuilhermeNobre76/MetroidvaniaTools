@@ -482,6 +482,8 @@ MonoBehaviour:
   weaponFired: 8
   upHeld: 119
   downHeld: 115
+  leftHeld: 97
+  rightHeld: 100
   tiltedUpHeld: 101
   tiltedDownHeld: 113
   aimingHeld: 305

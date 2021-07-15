@@ -56,6 +56,10 @@ namespace MetroidvaniaTools
         }
         protected virtual void Movement()
         {
+            if (gameManager.gamePaused)
+            {
+                return;
+            }
             if (MovementPressed())
             {
                 anim.SetBool("Moving", true);

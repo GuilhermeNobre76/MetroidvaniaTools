@@ -32,7 +32,7 @@ namespace MetroidvaniaTools
         }
         protected virtual void Dashing()
         {
-            if(input.DashPressed() && canDash)
+            if(input.DashPressed() && canDash && !character.isCrouching && !gameManager.gamePaused)
             {
                 deltaPosition = transform.position;
                 dashCountDown = dashCooldownTime;
