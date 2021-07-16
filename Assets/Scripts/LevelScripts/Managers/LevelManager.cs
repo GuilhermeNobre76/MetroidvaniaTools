@@ -46,16 +46,18 @@ namespace MetroidvaniaTools
             base.Initialization();
             playerIndicator.transform.position = playerIndicatorLocation;
             StartCoroutine(FadeIn());
-            for(int i = 0; i < fog.Length; i++)
-            {
-                fogTiles.Add(fog[i]);
-            }
-            int[] numberArray = PlayerPrefsX.GetIntArray("TilesToRemove");
-            foreach(int number in numberArray)
-            {
-                id.Add(number);
-                Destroy(fogTiles[number].gameObject);
-            }
+            //for(int i = 0; i < fog.Length; i++)
+            //{
+            //    fogTiles.Add(fog[i]);
+            //}
+
+            //int[] numberArray = PlayerPrefsX.GetIntArray("TilesToRemove");
+            //foreach(int number in numberArray)
+            //{
+            //    id.Add(number);
+            //    Destroy(fogTiles[number].gameObject);
+            //}
+
         }
         public virtual void RemoveFog(FogOfWar fogTile)
         {
