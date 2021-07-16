@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\Ladder.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\HorizontalMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMapFinder.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PlatformManager.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\FallingPlatforms.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Testing.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\PlayerPrefsX.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Character.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\MoveablePlatform.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Jump.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PathEditor.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\WorldMap.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\FogOfWar.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\Door.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
@@ -92,9 +95,9 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Managers\PlayerPrefsX.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\FogOfWar.cs" />
+    <Compile Include="Assets\Scripts\AIScripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\AIScripts\EnemyCharacter.cs" />
+    <Compile Include="Assets\Scripts\AIScripts\AIManagers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
