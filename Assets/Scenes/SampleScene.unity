@@ -1488,8 +1488,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087242860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75.047, y: -6.508, z: 0}
-  m_LocalScale: {x: 25, y: 1, z: 1}
+  m_LocalPosition: {x: 54.7, y: 4.5, z: 0}
+  m_LocalScale: {x: 25, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1482401112}
   m_RootOrder: 4
@@ -1635,13 +1635,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1482401112}
     m_Modifications:
+    - target: {fileID: 1382606238344636936, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
+      propertyPath: numberOfPaths.Array.data[2].x
+      value: 31.105667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382606238344636936, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
+      propertyPath: numberOfPaths.Array.data[2].y
+      value: -10.966615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382606238344636936, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
+      propertyPath: numberOfPaths.Array.data[0].x
+      value: 24.350954
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382606238344636936, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
+      propertyPath: numberOfPaths.Array.data[0].y
+      value: -16.646843
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382606238344636936, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
+      propertyPath: numberOfPaths.Array.data[1].y
+      value: -10.999374
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382606238344636936, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
+      propertyPath: numberOfPaths.Array.data[1].x
+      value: 17.434763
+      objectReference: {fileID: 0}
     - target: {fileID: 1382606238344636938, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.76
+      value: 72.7
       objectReference: {fileID: 0}
     - target: {fileID: 1382606238344636938, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.65
+      value: -8.3
       objectReference: {fileID: 0}
     - target: {fileID: 1382606238344636938, guid: 4c0cde4ab65f70c489907205b38d9887, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1761,17 +1785,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: avoidFalling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 337014369722544880, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4210239104964511153, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.73
+      objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.18
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.06
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1809,6 +1845,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6876056949923955964, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876056949923955964, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7615692312196576314, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bf15eeac65f9464089f009de429f8e4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
 --- !u!1001 &5943835293777976870
