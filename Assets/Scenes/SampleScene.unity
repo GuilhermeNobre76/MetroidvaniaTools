@@ -1488,8 +1488,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087242860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.7, y: 4.5, z: 0}
-  m_LocalScale: {x: 25, y: 3, z: 1}
+  m_LocalPosition: {x: 44.7, y: -0.7, z: 0}
+  m_LocalScale: {x: 25, y: 10.790304, z: 1}
   m_Children: []
   m_Father: {fileID: 1482401112}
   m_RootOrder: 4
@@ -1793,6 +1793,34 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: originalTimeTillDoAction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: jump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: jumpVerticalForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: jumpHorizontalForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: turnAroundOnCollision
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360782939, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
+      propertyPath: spawnFacingLeft
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 337014369722544880, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1803,11 +1831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9
+      value: -33.8
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: -11.4
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.z

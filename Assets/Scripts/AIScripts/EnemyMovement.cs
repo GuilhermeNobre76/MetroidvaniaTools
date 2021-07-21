@@ -17,11 +17,21 @@ namespace MetroidvaniaTools
         [SerializeField]
         protected bool avoidFalling;
         [SerializeField]
+        protected bool jump;
+        [SerializeField]
+        protected bool standStill;
+        [SerializeField]
         protected float timeTillMaxSpeed;
         [SerializeField]
         protected float maxSpeed;
         [SerializeField]
+        protected float jumpVerticalForce;
+        [SerializeField]
+        protected float jumpHorizontalForce;
+        [SerializeField]
         protected LayerMask collidersToTurnAroundOn;
+        [HideInInspector]
+        public bool turn;
 
         private bool spawning = true;
         private float acceleraion;
@@ -29,6 +39,7 @@ namespace MetroidvaniaTools
         private float runTime;
 
         protected bool wait;
+        protected bool wasJumping;
 
         protected float originalWaitTime = .1f;
         protected float currentWaitTime;
@@ -43,6 +54,7 @@ namespace MetroidvaniaTools
                 transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
             }
             currentWaitTime = originalWaitTime;
+            timeTillDoAction = originalTimeTillDoAction;
             Invoke("Spawning", .01f);
         }
 
@@ -53,6 +65,7 @@ namespace MetroidvaniaTools
             EdgeOfFloor();
             HandleWait();
             HugWalls();
+            Jumping();
         }
 
         protected virtual void Movement()
@@ -60,26 +73,37 @@ namespace MetroidvaniaTools
             if (!enemyCharacter.facingLeft)
             {
                 direction = 1;
-                if(CollisionCheck(Vector2.right, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !spawning)
+                if(CollisionCheck(Vector2.right, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !wasJumping && !spawning)
                 {
                     enemyCharacter.facingLeft = true;
                     transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+                    if (standStill)
+                    {
+                        rb.velocity = new Vector2(-jumpHorizontalForce, rb.velocity.y);
+                    }
                 }
             }
             else
             {
                 direction = -1;
-                if (CollisionCheck(Vector2.left, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !spawning)
+                if (CollisionCheck(Vector2.left, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !wasJumping && !spawning)
                 {
                     enemyCharacter.facingLeft = false;
                     transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+                    if (standStill)
+                    {
+                        rb.velocity = new Vector2(jumpHorizontalForce, rb.velocity.y);
+                    }
                 }
             }
             acceleraion = maxSpeed / timeTillMaxSpeed;
             runTime += Time.deltaTime;
             currentSpeed = direction * acceleraion * runTime;
             CheckSpeed();
-            rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+            if (!standStill)
+            {
+                rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+            }
         }
         protected virtual void CheckSpeed()
         {
@@ -102,13 +126,49 @@ namespace MetroidvaniaTools
                 transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
             }
         }
+        protected virtual void Jumping()
+        {
+            if(type == MovementType.Normal)
+            {
+                if(rayHitNumber > 0 && jump)
+                {
+                    timeTillDoAction -= Time.deltaTime;
+                    if(timeTillDoAction < 0)
+                    {
+                        rb.AddForce(Vector2.up * jumpVerticalForce);
+                        if (!enemyCharacter.facingLeft)
+                        {
+                            rb.velocity = new Vector2(jumpHorizontalForce, rb.velocity.y);
+                        }
+                        else
+                        {
+                            rb.velocity = new Vector2(-jumpHorizontalForce, rb.velocity.y);
+                        }
+                    }
+                }
+                if(rayHitNumber > 0 && rb.velocity.y < 0)
+                {
+                    wasJumping = true;
+                    if (standStill)
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
+                    timeTillDoAction = originalTimeTillDoAction;
+                    Invoke("NoLongerInTheAir", .5f);
+                }
+            }
+        }
+        protected virtual void NoLongerInTheAir()
+        {
+            wasJumping = false;
+        }
         protected virtual void Spawning()
         {
             spawning = false;
         }
         protected virtual void HugWalls()
         {
-            if(type == MovementType.HugWalls)
+            if (type == MovementType.HugWalls)
             {
                 turnAroundOnCollision = false;
                 float newZValue = transform.localEulerAngles.z;
@@ -127,7 +187,53 @@ namespace MetroidvaniaTools
                         transform.localEulerAngles = new Vector3(0, 0, newZValue + 90);
                     }
                 }
-                if(Mathf.Round(transform.eulerAngles.z) == 0)
+                if (turn && !wait)
+                {
+                    wait = true;
+                    currentWaitTime = originalWaitTime;
+                    rb.velocity = Vector2.zero;
+                    if (!enemyCharacter.facingLeft)
+                    {
+                        transform.eulerAngles = new Vector3(0, 0, newZValue + 90);
+                        if (Mathf.Round(transform.eulerAngles.z) == 0)
+                        {
+                            transform.position = new Vector2(transform.position.x, transform.position.y - (transform.localScale.x * .5f));
+                        }
+                        if (Mathf.Round(transform.eulerAngles.z) == 90)
+                        {
+                            transform.position = new Vector2(transform.position.x + (transform.localScale.x * .5f), transform.position.y);
+                        }
+                        if (Mathf.Round(transform.eulerAngles.z) == 180)
+                        {
+                            transform.position = new Vector2(transform.position.x, transform.position.y + (transform.localScale.x * .5f));
+                        }
+                        if (Mathf.Round(transform.eulerAngles.z) == 270)
+                        {
+                            transform.position = new Vector2(transform.position.x - (transform.localScale.x * .5f), transform.position.y);
+                        }
+                    }
+                    else
+                    {
+                        transform.eulerAngles = new Vector3(0, 0, newZValue - 90);
+                        if (Mathf.Round(transform.eulerAngles.z) == 0)
+                        {
+                            transform.position = new Vector2(transform.position.x, transform.position.y + (transform.localScale.x * .5f));
+                        }
+                        if (Mathf.Round(transform.eulerAngles.z) == 90)
+                        {
+                            transform.position = new Vector2(transform.position.x - (transform.localScale.x * .5f), transform.position.y);
+                        }
+                        if (Mathf.Round(transform.eulerAngles.z) == 180)
+                        {
+                            transform.position = new Vector2(transform.position.x, transform.position.y - (transform.localScale.x * .5f));
+                        }
+                        if (Mathf.Round(transform.eulerAngles.z) == 270)
+                        {
+                            transform.position = new Vector2(transform.position.x + (transform.localScale.x * .5f), transform.position.y);
+                        }
+                    }
+                }
+                if (Mathf.Round(transform.eulerAngles.z) == 0)
                 {
                     rb.velocity = new Vector2(currentSpeed, 0);
                 }
@@ -143,7 +249,7 @@ namespace MetroidvaniaTools
                 {
                     rb.velocity = new Vector2(0, -currentSpeed);
                 }
-                if(rayHitNumber == 0 && !wait)
+                if (rayHitNumber == 0 && !wait)
                 {
                     transform.localEulerAngles = Vector3.zero;
                     rb.gravityScale = 1;
