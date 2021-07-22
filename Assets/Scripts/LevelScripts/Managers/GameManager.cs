@@ -53,7 +53,7 @@ namespace MetroidvaniaTools
                     Destroy(obj);
                 }
             }
-            Instantiate(initialPlayer, location, Quaternion.identity);
+            Instantiate(initialPlayer, new Vector3(location.x, location.y, 0), Quaternion.identity);
             initialPlayer.GetComponent<Character>().InitializePlayer();
         }
     }

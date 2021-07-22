@@ -8,6 +8,10 @@ namespace MetroidvaniaTools
     {
         [HideInInspector]
         public bool facingLeft;
+        [HideInInspector]
+        public bool followPlayer;
+        [HideInInspector]
+        public bool playerIsClose;
 
         protected Rigidbody2D rb;
         protected Collider2D col;

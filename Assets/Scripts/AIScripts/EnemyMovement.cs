@@ -7,7 +7,7 @@ namespace MetroidvaniaTools
     public class EnemyMovement : AIManagers
     {
         [SerializeField]
-        protected enum MovementType { Normal, HugWalls }
+        protected enum MovementType { Normal, HugWalls, Flying }
         [SerializeField]
         protected MovementType type;
         [SerializeField]
@@ -18,8 +18,7 @@ namespace MetroidvaniaTools
         protected bool avoidFalling;
         [SerializeField]
         protected bool jump;
-        [SerializeField]
-        protected bool standStill;
+        public bool standStill;
         [SerializeField]
         protected float timeTillMaxSpeed;
         [SerializeField]
@@ -28,6 +27,8 @@ namespace MetroidvaniaTools
         protected float jumpVerticalForce;
         [SerializeField]
         protected float jumpHorizontalForce;
+        [SerializeField]
+        protected float minDistance;
         [SerializeField]
         protected LayerMask collidersToTurnAroundOn;
         [HideInInspector]
@@ -66,14 +67,19 @@ namespace MetroidvaniaTools
             HandleWait();
             HugWalls();
             Jumping();
+            FollowPlayer();
         }
 
         protected virtual void Movement()
         {
+            if(type == MovementType.Flying)
+            {
+                rb.gravityScale = 0;
+            }
             if (!enemyCharacter.facingLeft)
             {
                 direction = 1;
-                if(CollisionCheck(Vector2.right, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !wasJumping && !spawning)
+                if(CollisionCheck(Vector2.right, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !wasJumping && !spawning || (enemyCharacter.followPlayer && player.transform.position.x < transform.position.x))
                 {
                     enemyCharacter.facingLeft = true;
                     transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
@@ -86,7 +92,7 @@ namespace MetroidvaniaTools
             else
             {
                 direction = -1;
-                if (CollisionCheck(Vector2.left, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !wasJumping && !spawning)
+                if (CollisionCheck(Vector2.left, .5f, collidersToTurnAroundOn) && turnAroundOnCollision && !wasJumping && !spawning || (enemyCharacter.followPlayer && player.transform.position.x > transform.position.x))
                 {
                     enemyCharacter.facingLeft = false;
                     transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
@@ -100,9 +106,42 @@ namespace MetroidvaniaTools
             runTime += Time.deltaTime;
             currentSpeed = direction * acceleraion * runTime;
             CheckSpeed();
-            if (!standStill)
+            if (!standStill && !enemyCharacter.followPlayer)
             {
                 rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+            }
+        }
+        protected virtual void FollowPlayer()
+        {
+            if (enemyCharacter.followPlayer)
+            {
+                bool tooClose = new bool();
+                if(Mathf.Abs(transform.position.x - player.transform.position.x) < minDistance)
+                {
+                    tooClose = true;
+                }
+                else
+                {
+                    tooClose = false;
+                }
+                if (!enemyCharacter.facingLeft)
+                {
+                    Vector2 distanceToPlayer = (new Vector3(transform.position.x - 2, transform.position.y) - player.transform.position).normalized * minDistance + player.transform.position;
+                    transform.position = Vector2.MoveTowards(transform.position, distanceToPlayer, currentSpeed * Time.deltaTime);
+                    if (tooClose)
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
+                }
+                else
+                {
+                    Vector2 distanceToPlayer = (new Vector3(transform.position.x - 2, transform.position.y) - player.transform.position).normalized * minDistance + player.transform.position;
+                    transform.position = Vector2.MoveTowards(transform.position, distanceToPlayer, -currentSpeed * Time.deltaTime);
+                    if (tooClose)
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
+                }
             }
         }
         protected virtual void CheckSpeed()
@@ -118,7 +157,7 @@ namespace MetroidvaniaTools
         }
         protected virtual void EdgeOfFloor()
         {
-            if(rayHitNumber == 1 && avoidFalling && !wait)
+            if(rayHitNumber == 1 && avoidFalling && !wait && type == MovementType.Normal)
             {
                 currentWaitTime = originalWaitTime;
                 wait = true;
