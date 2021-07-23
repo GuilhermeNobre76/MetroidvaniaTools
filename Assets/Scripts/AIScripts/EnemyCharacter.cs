@@ -17,6 +17,7 @@ namespace MetroidvaniaTools
         protected Collider2D col;
         protected EnemyMovement enemyMovement;
         protected GameObject player;
+        protected Collider2D playerCollider;
 
         protected int rayHitNumber;
         public float originalTimeTillDoAction;
@@ -33,6 +34,7 @@ namespace MetroidvaniaTools
             col = GetComponent<Collider2D>();
             enemyMovement = GetComponent<EnemyMovement>();
             player = FindObjectOfType<Character>().gameObject;
+            playerCollider = player.GetComponent<Collider2D>();
         }
         protected virtual bool CollisionCheck(Vector2 direction, float distance, LayerMask collision)
         {

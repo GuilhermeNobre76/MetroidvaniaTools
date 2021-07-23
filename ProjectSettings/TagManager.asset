@@ -9,6 +9,7 @@ TagManager:
   - SecondWeapon
   - GrapplingHook
   - MiniMapCamera
+  - EnemyBaseProjectile
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Player
   - MiniMapIcons
   - LevelBorder
-  - 
+  - Enemy
   - 
   - 
   - 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62bfe7e8f48e1a4f8754e5dc164458c, type: 3}
+  m_Name: EnemyWeapon
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 8858061415062635015, guid: 5571d397ee5774c42b7c69c9cc4a1e7a, type: 3}
+  projectileSpeed: 20
+  amountToPool: 4
+  lifeTime: 2
+  automatic: 1
+  timeBetweenShots: 0.3
+  canExpandPool: 0
+  canResetPool: 1

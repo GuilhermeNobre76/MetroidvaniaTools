@@ -46,6 +46,19 @@ namespace MetroidvaniaTools
             projectileParentFolder.name = weapon.name;
             projectileParentFolder.tag = weapon.projectile.tag;
         }
+        public void CreateEnemyPool(WeaponTypes weapon, List<GameObject> currentPool, GameObject projectileParentFolder, EnemyWeapon weaponScript)
+        {
+            weaponScript.totalPools.Add(projectileParentFolder);
+            for (int i = 0; i < weapon.amountToPool; i++)
+            {
+                currentItem = Instantiate(weapon.projectile);
+                currentItem.SetActive(false);
+                currentPool.Add(currentItem);
+                currentItem.transform.SetParent(projectileParentFolder.transform);
+            }
+            projectileParentFolder.name = weapon.name;
+            projectileParentFolder.tag = weapon.projectile.tag;
+        }
         public virtual GameObject GetObject(List<GameObject> currentPool, WeaponTypes weapon, Weapon weaponScript, GameObject projectileParentFolder, string tag)
         {
             for (int i = 0; i < currentPool.Count; i++)
@@ -76,6 +89,28 @@ namespace MetroidvaniaTools
                     currentItem.SetActive(false);
                     weaponScript.bulletsToReset.Add(currentItem);
                     currentItem.GetComponent<Projectile>().DestroyProjectile();
+                    return currentItem;
+                }
+            }
+            return null;
+        }
+        public virtual GameObject GetEnemyObject(List<GameObject> currentPool, WeaponTypes weapon, GameObject projectileParentFolder, string tag)
+        {
+            for (int i = 0; i < currentPool.Count; i++)
+            {
+                if (!currentPool[i].activeInHierarchy && currentPool[i].tag == tag)
+                {
+                    return currentPool[i];
+                }
+            }
+            foreach (GameObject item in currentPool)
+            {
+                if (weapon.canExpandPool && item.tag == tag)
+                {
+                    currentItem = Instantiate(weapon.projectile);
+                    currentItem.SetActive(false);
+                    currentPool.Add(currentItem);
+                    currentItem.transform.SetParent(projectileParentFolder.transform);
                     return currentItem;
                 }
             }

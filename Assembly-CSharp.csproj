@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PathEditor.cs" />
+    <Compile Include="Assets\Scripts\AIScripts\PlayerDetector.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\WorldMap.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\FogOfWar.cs" />
@@ -97,9 +98,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Crouch.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
-    <Compile Include="Assets\Scripts\AIScripts\PlayerDetector.cs" />
     <Compile Include="Assets\Scripts\AIScripts\MeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\EnemyWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
