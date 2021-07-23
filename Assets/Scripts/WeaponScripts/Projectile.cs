@@ -8,6 +8,10 @@ namespace MetroidvaniaTools
     {
         [SerializeField]
         protected WeaponTypes weapon;
+        [SerializeField]
+        protected int damageAmount;
+        [SerializeField]
+        protected LayerMask damageLayers;
 
         public bool fired;
         public bool left;
@@ -61,6 +65,17 @@ namespace MetroidvaniaTools
                 {
                     DestroyProjectile();
                 }
+            }
+        }
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
+        {
+            if ((1 << collision.gameObject.layer & damageLayers) != 0)
+            {
+                if(collision.gameObject.GetComponent<Health>() != null)
+                {
+                    collision.gameObject.GetComponent<Health>().DealDamage(damageAmount);
+                }
+                DestroyProjectile();
             }
         }
         public virtual void DestroyProjectile()

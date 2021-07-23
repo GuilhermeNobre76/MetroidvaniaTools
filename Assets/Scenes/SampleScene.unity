@@ -1785,25 +1785,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1069916931, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
-      propertyPath: followPlayerIfFound
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069916938, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
-      propertyPath: hitPlayerWhenClose
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 337014369722544880, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.29
+      value: -30.7
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.23
+      value: -9.2
       objectReference: {fileID: 0}
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1840,10 +1832,6 @@ PrefabInstance:
     - target: {fileID: 5354734041720780024, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6938016469817948195, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}
-      propertyPath: aimAtPlayer
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f4c793f1813300448c0619c0a33ea9c, type: 3}

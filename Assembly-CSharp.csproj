@@ -101,6 +101,10 @@
     <Compile Include="Assets\Scripts\AIScripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\EnemyWeapon.cs" />
+    <Compile Include="Assets\Scripts\Stats\Health.cs" />
+    <Compile Include="Assets\Scripts\Stats\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Stats\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Stats\RandomDrop.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

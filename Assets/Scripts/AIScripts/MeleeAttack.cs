@@ -8,10 +8,13 @@ namespace MetroidvaniaTools
     {
         [SerializeField]
         protected bool hitPlayerWhenClose;
+        [SerializeField]
+        protected int damageAmount;
 
         protected Collider2D swipeCollider;
         protected Animator anim;
         protected GameObject swipe;
+        protected PlayerHealth playerHealth;
         protected bool hit;
 
         protected override void Initialization()
@@ -20,6 +23,7 @@ namespace MetroidvaniaTools
             swipe = transform.GetChild(0).gameObject;
             anim = swipe.GetComponent<Animator>();
             swipeCollider = swipe.GetComponent<Collider2D>();
+            playerHealth = player.GetComponent<PlayerHealth>();
             swipe.SetActive(false);
         }
         protected virtual void FixedUpdate()
@@ -45,12 +49,20 @@ namespace MetroidvaniaTools
             }
             Invoke("CancelSwipe", anim.GetCurrentAnimatorStateInfo(0).length);
         }
-
+        protected virtual void DealDamage()
+        {
+            if (hit)
+            {
+                playerHealth.DealDamage(damageAmount);
+                hit = false;
+            }
+        }
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.gameObject == player && !hit)
             {
                 hit = true;
+                DealDamage();
                 Debug.Log("Hit");
             }
         }
