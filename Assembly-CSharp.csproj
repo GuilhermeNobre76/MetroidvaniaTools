@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\Ladder.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\HorizontalMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\EnemyWeapon.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
     <Compile Include="Assets\Scripts\AIScripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\AIScripts\AIManagers.cs" />
@@ -76,8 +77,11 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Jump.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Stats\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Water.cs" />
+    <Compile Include="Assets\Scripts\Stats\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\AIScripts\EnemyCharacter.cs" />
+    <Compile Include="Assets\Scripts\Stats\Health.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMap.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\SceneReference.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Map\FogOfWar.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\Door.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Dash.cs" />
+    <Compile Include="Assets\Scripts\Stats\RandomDrop.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\AimManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\BigMapFinder.cs" />
@@ -100,11 +105,13 @@
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\AIScripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
-    <Compile Include="Assets\Scripts\WeaponScripts\EnemyWeapon.cs" />
-    <Compile Include="Assets\Scripts\Stats\Health.cs" />
-    <Compile Include="Assets\Scripts\Stats\EnemyHealth.cs" />
-    <Compile Include="Assets\Scripts\Stats\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\Stats\RandomDrop.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\ItemType.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\Consumable.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\HealthConsumable.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\ItemPickup.cs" />
+    <Compile Include="Assets\Scripts\Stats\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\AbilityItem.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\AbilityPickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

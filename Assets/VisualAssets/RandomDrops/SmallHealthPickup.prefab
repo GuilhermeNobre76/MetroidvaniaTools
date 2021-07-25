@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4300322477920746616}
   - component: {fileID: 3083992140017173335}
   - component: {fileID: 3327867035606661358}
+  - component: {fileID: -792532116813088683}
   m_Layer: 0
   m_Name: SmallHealthPickup
   m_TagString: Untagged
@@ -109,3 +110,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-792532116813088683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3795783545068530527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bc85c9769421f40b5e90c658395d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: c019571d7557c2a42921f77d9cd8a052, type: 2}

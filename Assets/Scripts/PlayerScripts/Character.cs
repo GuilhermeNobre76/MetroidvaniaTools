@@ -35,6 +35,7 @@ namespace MetroidvaniaTools
         protected AimManager aimManager;
         protected Weapon weapon;
         protected GrapplingHook grapplingHook;
+        protected Dash dash;
         protected GameObject currentPlatform;
         protected GameObject player;
         protected GameManager gameManager;
@@ -58,6 +59,7 @@ namespace MetroidvaniaTools
             aimManager = GetComponent<AimManager>();
             weapon = GetComponent<Weapon>();
             grapplingHook = GetComponent<GrapplingHook>();
+            dash = GetComponent<Dash>();
             gameManager = FindObjectOfType<GameManager>();
             objectPooler = ObjectPooler.Instance;
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);

@@ -394,7 +394,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443110505493631608}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15ba21ab2f40b5b44b28134023190e8b, type: 3}
   m_Name: 
@@ -408,6 +408,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   dashForce: 1000
   dashCooldownTime: 3
   dashAmountTime: 0.5
@@ -456,6 +458,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   timeTillMaxSpeed: 0.75
   maxSpeed: 6
   sprintMultiplier: 2
@@ -510,6 +514,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   weaponTypes:
   - {fileID: 11400000, guid: 6a11b935449689b4bb6af590fada312f, type: 2}
   - {fileID: 11400000, guid: d5125926bcfbad242bed2efc27edfd0f, type: 2}
@@ -543,6 +549,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   aimingGun: {fileID: 301921329}
   aimingLeftHand: {fileID: 1798510695}
   notAimingGun: {fileID: 3235101679166243977}
@@ -576,6 +584,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   hookLength: 10
   minHookLength: 2
   hookReelSpeed: 5
@@ -606,6 +616,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   colliderMultiplier: 0.5
   layers:
     serializedVersion: 2
@@ -667,6 +679,8 @@ MonoBehaviour:
   isDashing: 0
   isWallSliding: 0
   isOnLadder: 0
+  dashAbility: 0
+  wallJumpAbility: 0
   limitAirJumps: 0
   maxJumps: 1
   jumpForce: 150

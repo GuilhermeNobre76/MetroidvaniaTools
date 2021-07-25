@@ -6,12 +6,45 @@ namespace MetroidvaniaTools
 {
     public class Abilities : Character
     {
+        [HideInInspector]
+        public bool dashAbility;
+        [HideInInspector]
+        public bool wallJumpAbility;
+
         protected Character character;
 
         protected override void Initialization()
         {
             base.Initialization();
             character = GetComponent<Character>();
+            dashAbility = PlayerPrefs.GetInt("DashAbility") == 1 ? true : false;
+            wallJumpAbility = PlayerPrefs.GetInt("WallJumpAbility") == 1 ? true : false;
+            TurnOnAbilities();
+        }
+
+        public virtual void DashAbility()
+        {
+            dashAbility = true;
+            dash.enabled = true;
+            PlayerPrefs.SetInt("DashAbility", dashAbility ? 1 : 0);
+        }
+
+        public virtual void WallJumpAbility()
+        {
+            jump.wallJumpAbility = true;
+            PlayerPrefs.SetInt("WallJumpAbility", jump.wallJumpAbility ? 1 : 0);
+        }
+
+        public virtual void TurnOnAbilities()
+        {
+            if (dashAbility)
+            {
+                dash.enabled = true;
+            }
+            if (wallJumpAbility)
+            {
+                jump.wallJumpAbility = true;
+            }
         }
     }
 }

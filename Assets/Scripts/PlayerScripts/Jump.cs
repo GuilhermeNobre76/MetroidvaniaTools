@@ -83,7 +83,7 @@ namespace MetroidvaniaTools
                     character.isJumping = false;
                     return false;
                 }
-                if (character.isWallSliding)
+                if (character.isWallSliding && wallJumpAbility)
                 {
                     wallJumpTime = wallJumpCountdown;
                     isWallJumping = true;

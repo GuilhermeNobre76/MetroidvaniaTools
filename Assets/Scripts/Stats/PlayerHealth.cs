@@ -57,5 +57,13 @@ namespace MetroidvaniaTools
         {
             invulnerable = false;
         }
+        public virtual void GainCurrentHealth(int amount)
+        {
+            healthPoints += amount;
+            if(healthPoints > maxHealthPoints)
+            {
+                healthPoints = maxHealthPoints;
+            }
+        }
     }
 }
