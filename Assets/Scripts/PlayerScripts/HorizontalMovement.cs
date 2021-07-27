@@ -18,6 +18,9 @@ namespace MetroidvaniaTools
         protected float hookSpeedMultiplier;
         [SerializeField]
         protected float ladderSpeed;
+        public List<Vector3> deltaPositions = new List<Vector3>();
+        [HideInInspector]
+        public Vector3 bestDeltaPosition;
         [HideInInspector]
         public GameObject currentLadder;
 
@@ -26,6 +29,8 @@ namespace MetroidvaniaTools
         private float currentSpeed;
         private float horizontalInput;
         private float runTime;
+        private float deltaPositionCountdown = 1;
+        private float deltaPositionCountdownCurrent = 0;
 
         protected override void Initialization()
         {
@@ -34,7 +39,6 @@ namespace MetroidvaniaTools
 
         protected virtual void Update()
         {
-
             MovementPressed();
         }
 
@@ -53,6 +57,7 @@ namespace MetroidvaniaTools
             Movement();
             RemoveFromGrapple();
             LadderMovement();
+            PreviousGroundedPositions();
         }
         protected virtual void Movement()
         {
@@ -130,6 +135,23 @@ namespace MetroidvaniaTools
             {
                 anim.SetBool("OnLadder", false);
                 rb.bodyType = RigidbodyType2D.Dynamic;
+            }
+        }
+        protected virtual void PreviousGroundedPositions()
+        {
+            if(character.isGrounded && MovementPressed())
+            {
+                deltaPositionCountdownCurrent -= Time.deltaTime;
+                if(deltaPositionCountdownCurrent < 0)
+                {
+                    if(deltaPositions.Count == 10)
+                    {
+                        deltaPositions.RemoveAt(0);
+                    }
+                    deltaPositions.Add(transform.position);
+                    deltaPositionCountdownCurrent = deltaPositionCountdown;
+                    bestDeltaPosition = deltaPositions[0];
+                }
             }
         }
         protected virtual void CheckDirection()

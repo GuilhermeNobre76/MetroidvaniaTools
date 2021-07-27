@@ -8,28 +8,62 @@ namespace MetroidvaniaTools
     {
         [SerializeField]
         protected float iFrameTime;
+        [SerializeField]
+        protected float verticalDamageForce;
+        [SerializeField]
+        protected float horizontalDamageForce;
+        [SerializeField]
+        protected float slowDownTimeAmount;
+        [SerializeField]
+        protected float slowDownSpeed;
         protected SpriteRenderer[] sprites;
+        protected Rigidbody2D rb;
         [HideInInspector]
         public bool invulnerable;
+        [HideInInspector]
+        public bool hit;
+        [HideInInspector]
+        public bool left;
+        protected float originalTimeScale;
 
         protected override void Initialization()
         {
             base.Initialization();
+            rb = GetComponent<Rigidbody2D>();
             sprites = GetComponentsInChildren<SpriteRenderer>();
         }
         protected virtual void FixedUpdate()
         {
             HandleFrames();
+            HandleDamageMovement();
         }
         public override void DealDamage(int amount)
         {
-            if (invulnerable)
+            if (invulnerable || character.isDashing)
             {
                 return;
             }
             base.DealDamage(amount);
+            originalTimeScale = Time.timeScale;
             invulnerable = true;
             Invoke("Cancel", iFrameTime);
+        }
+        public virtual void HandleDamageMovement()
+        {
+            if (hit)
+            {
+                Time.timeScale = slowDownSpeed;
+                rb.AddForce(Vector2.up * verticalDamageForce);
+                if (!left)
+                {
+                    rb.AddForce(Vector2.right * horizontalDamageForce);
+                }
+                else
+                {
+                    rb.AddForce(Vector2.left * horizontalDamageForce);
+                }
+                Invoke("HitCancel", slowDownTimeAmount);
+            }
         }
         protected virtual void HandleFrames()
         {
@@ -52,6 +86,11 @@ namespace MetroidvaniaTools
                     sprite.color = spriteColors;
                 }
             }
+        }
+        protected virtual void HitCancel()
+        {
+            hit = false;
+            Time.timeScale = originalTimeScale;
         }
         protected virtual void Cancel()
         {

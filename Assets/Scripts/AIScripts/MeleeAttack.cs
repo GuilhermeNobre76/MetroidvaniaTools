@@ -53,8 +53,13 @@ namespace MetroidvaniaTools
         {
             if (hit)
             {
+                if (player.transform.position.x < transform.position.x)
+                {
+                    playerHealth.left = false;
+                }
+                else
+                    playerHealth.left = true;
                 playerHealth.DealDamage(damageAmount);
-                hit = false;
             }
         }
         protected virtual void OnTriggerEnter2D(Collider2D collision)

@@ -15,6 +15,8 @@ namespace MetroidvaniaTools
         protected float dashAmountTime;
         [SerializeField]
         protected LayerMask dashingLayers;
+        [SerializeField]
+        protected LayerMask enemyDashingLayers;
 
         private bool canDash;
         private float dashCountDown;
@@ -56,17 +58,17 @@ namespace MetroidvaniaTools
                 movement.enabled = false;
                 if (!character.isFacingLeft)
                 {
-                    DashCollision(Vector2.right, .5f, dashingLayers);
+                    DashCollision(Vector2.right, .5f, dashingLayers, enemyDashingLayers);
                     rb.AddForce(Vector2.right * dashForce);
                 }
                 else
                 {
-                    DashCollision(Vector2.left, .5f, dashingLayers);
+                    DashCollision(Vector2.left, .5f, dashingLayers, enemyDashingLayers);
                     rb.AddForce(Vector2.left * dashForce);
                 }
             }
         }
-        protected virtual void DashCollision(Vector2 direction, float distance, LayerMask collision)
+        protected virtual void DashCollision(Vector2 direction, float distance, LayerMask collision, LayerMask enemyCollsion)
         {
             RaycastHit2D[] hits = new RaycastHit2D[10];
             int numHits = col.Cast(direction, hits, distance);
@@ -77,6 +79,17 @@ namespace MetroidvaniaTools
                     hits[i].collider.enabled = false;
                     StartCoroutine(TurnColliderBackOn(hits[i].collider.gameObject));
                 }
+                if ((1 << hits[i].collider.gameObject.layer & enemyCollsion) != 0)
+                {
+                    col.isTrigger = true;
+                }
+            }
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.GetComponent<EnemyCharacter>())
+            {
+                col.isTrigger = false;
             }
         }
         protected virtual void ResetDashCounter()

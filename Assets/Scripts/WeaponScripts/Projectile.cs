@@ -75,6 +75,15 @@ namespace MetroidvaniaTools
                 {
                     collision.gameObject.GetComponent<Health>().DealDamage(damageAmount);
                 }
+                if(collision.gameObject.tag == "Player")
+                {
+                    if(collision.transform.position.x < transform.position.x)
+                    {
+                        collision.gameObject.GetComponent<PlayerHealth>().left = true;
+                    }
+                    else
+                        collision.gameObject.GetComponent<PlayerHealth>().left = false;
+                }
                 DestroyProjectile();
             }
         }

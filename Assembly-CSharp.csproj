@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\PlayerScripts\HorizontalMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\EnemyWeapon.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\AbilityPickup.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
     <Compile Include="Assets\Scripts\AIScripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\AIScripts\AIManagers.cs" />
@@ -74,19 +75,24 @@
     <Compile Include="Assets\Scripts\LevelScripts\Managers\PlayerPrefsX.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Character.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\MoveablePlatform.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\ItemType.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Jump.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\Stats\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\AbilityItem.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Water.cs" />
     <Compile Include="Assets\Scripts\Stats\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\HealthConsumable.cs" />
     <Compile Include="Assets\Scripts\AIScripts\EnemyCharacter.cs" />
     <Compile Include="Assets\Scripts\Stats\Health.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\MiniMap.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\SceneReference.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Abilities.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\OneWayPlatform.cs" />
+    <Compile Include="Assets\Scripts\Stats\Items\Consumable.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\PathEditor.cs" />
     <Compile Include="Assets\Scripts\AIScripts\PlayerDetector.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\InputManager.cs" />
@@ -105,13 +111,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\AIScripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
-    <Compile Include="Assets\Scripts\Stats\Items\ItemType.cs" />
-    <Compile Include="Assets\Scripts\Stats\Items\Consumable.cs" />
-    <Compile Include="Assets\Scripts\Stats\Items\HealthConsumable.cs" />
-    <Compile Include="Assets\Scripts\Stats\Items\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\Stats\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\Stats\Items\AbilityItem.cs" />
-    <Compile Include="Assets\Scripts\Stats\Items\AbilityPickup.cs" />
+    <Compile Include="Assets\Scripts\AIScripts\DamageOnTouch.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\OutOfBounds.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

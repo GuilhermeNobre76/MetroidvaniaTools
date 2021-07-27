@@ -97,6 +97,26 @@ namespace MetroidvaniaTools
                 yield return new WaitForEndOfFrame();
             }
         }
+        public virtual IEnumerator FallFadeOut()
+        {
+            float timeStarted = Time.time;
+            float timeSinceStarted = Time.time - timeStarted;
+            float percentageComplete = timeSinceStarted / .5f;
+            Color currentColor = fadeScreen.color;
+            while (true)
+            {
+                timeSinceStarted = Time.time - timeStarted;
+                percentageComplete = timeSinceStarted / .5f;
+                currentColor.a = Mathf.Lerp(0, 1, percentageComplete);
+                fadeScreen.color = currentColor;
+                if (percentageComplete >= 1)
+                {
+                    break;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            StartCoroutine(FadeIn());
+        }
         protected virtual IEnumerator FadeOut(SceneReference scene)
         {
             float timeStarted = Time.time;

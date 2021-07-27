@@ -416,6 +416,9 @@ MonoBehaviour:
   dashingLayers:
     serializedVersion: 2
     m_Bits: 512
+  enemyDashingLayers:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!114 &-1969569271442490784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +469,8 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.5
   hookSpeedMultiplier: 3
   ladderSpeed: 7
+  deltaPositions: []
+  bestDeltaPosition: {x: 0, y: 0, z: 0}
   currentLadder: {fileID: 0}
 --- !u!114 &568420698
 MonoBehaviour:
@@ -718,7 +723,13 @@ MonoBehaviour:
   maxHealthPoints: 100
   healthPoints: 0
   iFrameTime: 1
+  verticalDamageForce: 50
+  horizontalDamageForce: 500
+  slowDownTimeAmount: 0.1
+  slowDownSpeed: 0.25
   invulnerable: 0
+  hit: 0
+  left: 0
 --- !u!1 &3235101678271593644
 GameObject:
   m_ObjectHideFlags: 0
