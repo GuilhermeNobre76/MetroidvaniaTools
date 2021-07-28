@@ -11,7 +11,7 @@ namespace MetroidvaniaTools
 
         private void OnEnable()
         {
-            found = PlayerPrefs.GetInt(" " + item) == 1 ? true : false;
+            found = PlayerPrefs.GetInt(item.name) == 1 ? true : false;
             if (found)
             {
                 Destroy(gameObject);
@@ -24,7 +24,7 @@ namespace MetroidvaniaTools
             {
                 item.UseItem(collision.gameObject);
                 found = true;
-                PlayerPrefs.SetInt(" " + item, found ? 1 : 0);
+                PlayerPrefs.SetInt(item.name, found ? 1 : 0);
                 Destroy(gameObject);
             }
         }
