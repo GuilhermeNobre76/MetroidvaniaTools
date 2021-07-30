@@ -357,7 +357,7 @@ MonoBehaviour:
   playerIsClose: 0
   originalTimeTillDoAction: 1
   hitPlayerWhenClose: 1
-  damageAmount: 10
+  damageAmount: 50
 --- !u!114 &6938016469817948195
 MonoBehaviour:
   m_ObjectHideFlags: 0

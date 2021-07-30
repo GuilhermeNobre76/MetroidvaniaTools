@@ -8,6 +8,13 @@ namespace MetroidvaniaTools
     {
         protected GameObject miniMap;
         protected GameObject bigMap;
+        [HideInInspector]
+        public GameObject deadScreen;
+        [HideInInspector]
+        public GameObject gamePausedScreen;
+        [HideInInspector]
+        public GameObject areYouSureScreen;
+
         protected float originalTimeScale;
 
         public bool bigMapOn;
@@ -17,26 +24,28 @@ namespace MetroidvaniaTools
             base.Initialization();
             miniMap = FindObjectOfType<MiniMapFinder>().gameObject;
             bigMap = FindObjectOfType<BigMapFinder>().gameObject;
-            bigMap.SetActive(false);
+            deadScreen = FindObjectOfType<DeadScreenFinder>().gameObject;
+            gamePausedScreen = FindObjectOfType<GamePausedFinder>().gameObject;
+            areYouSureScreen = FindObjectOfType<AreYouSureFinder>().gameObject;
+            ManageUI();
         }
         protected virtual void Update()
         {
             if (player.GetComponent<InputManager>().BigMapPressed())
             {
-                bigMapOn = !bigMapOn;
-                SwitchMaps();
+                GamePaused();
             }
             if (bigMapOn)
             {
                 MoveMap();
             }
         }
-        protected virtual void SwitchMaps()
+        protected virtual void GamePaused()
         {
-            if (bigMapOn)
+            if (!gameManager.gamePaused)
             {
                 miniMap.SetActive(false);
-                bigMap.SetActive(true);
+                gamePausedScreen.SetActive(true);
                 gameManager.gamePaused = true;
                 originalTimeScale = Time.timeScale;
                 Time.timeScale = 0;
@@ -45,9 +54,49 @@ namespace MetroidvaniaTools
             {
                 miniMap.SetActive(true);
                 bigMap.SetActive(false);
+                gamePausedScreen.SetActive(false);
+                areYouSureScreen.SetActive(false);
+                bigMapOn = false;
                 gameManager.gamePaused = false;
                 Time.timeScale = originalTimeScale;
             }
+        }
+        public virtual void ReturnToGame()
+        {
+            miniMap.SetActive(true);
+            gamePausedScreen.SetActive(false);
+            gameManager.gamePaused = false;
+            Time.timeScale = originalTimeScale;
+        }
+        public virtual void BigMapOn()
+        {
+            gamePausedScreen.SetActive(false);
+            bigMap.SetActive(true);
+            bigMapOn = true;
+        }
+        public virtual void QuitGame()
+        {
+            areYouSureScreen.SetActive(true);
+        }
+        public virtual void ReturnToMainMenu()
+        {
+            bigMap.SetActive(false);
+            bigMapOn = false;
+            areYouSureScreen.SetActive(false);
+            gamePausedScreen.SetActive(true);
+        }
+        public virtual void ManageUI()
+        {
+            miniMap.SetActive(true);
+            bigMap.SetActive(false);
+            gamePausedScreen.SetActive(false);
+            areYouSureScreen.SetActive(false);
+            deadScreen.SetActive(false);
+        }
+        public virtual void SureToQuit()
+        {
+            Time.timeScale = originalTimeScale;
+            gameManager.gamePaused = false;
         }
         protected virtual void MoveMap()
         {

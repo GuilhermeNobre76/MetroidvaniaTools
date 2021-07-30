@@ -24,6 +24,8 @@ namespace MetroidvaniaTools
         public bool isWallSliding;
         [HideInInspector]
         public bool isOnLadder;
+        [HideInInspector]
+        public bool isDead;
 
         protected Collider2D col;
         protected Rigidbody2D rb;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MetroidvaniaTools
 {
@@ -18,19 +19,23 @@ namespace MetroidvaniaTools
         protected float slowDownSpeed;
         protected SpriteRenderer[] sprites;
         protected Rigidbody2D rb;
+        protected Image deadScreenImage;
+        protected Text deadScreenText;
+        protected float originalTimeScale;
         [HideInInspector]
         public bool invulnerable;
         [HideInInspector]
         public bool hit;
         [HideInInspector]
         public bool left;
-        protected float originalTimeScale;
 
         protected override void Initialization()
         {
             base.Initialization();
             rb = GetComponent<Rigidbody2D>();
             sprites = GetComponentsInChildren<SpriteRenderer>();
+            deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
+            deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
         }
         protected virtual void FixedUpdate()
         {
@@ -39,14 +44,24 @@ namespace MetroidvaniaTools
         }
         public override void DealDamage(int amount)
         {
-            if (invulnerable || character.isDashing)
+            if (!character.isDead)
             {
-                return;
+                if (invulnerable || character.isDashing)
+                {
+                    return;
+                }
+                base.DealDamage(amount);
+                if (healthPoints <= 0)
+                {
+                    character.isDead = true;
+                    healthPoints = 0;
+                    player.GetComponent<Animator>().SetBool("Dying", true);
+                    StartCoroutine(Dead());
+                }
+                originalTimeScale = Time.timeScale;
+                invulnerable = true;
+                Invoke("Cancel", iFrameTime);
             }
-            base.DealDamage(amount);
-            originalTimeScale = Time.timeScale;
-            invulnerable = true;
-            Invoke("Cancel", iFrameTime);
         }
         public virtual void HandleDamageMovement()
         {
@@ -102,6 +117,39 @@ namespace MetroidvaniaTools
             if(healthPoints > maxHealthPoints)
             {
                 healthPoints = maxHealthPoints;
+            }
+        }
+        protected virtual IEnumerator Dead()
+        {
+            uiManager.deadScreen.SetActive(true);
+            float timeStarted = Time.time;
+            float timeSinceStarted = Time.time - timeStarted;
+            float percentageComplete = timeSinceStarted / 2;
+            Color currentColor = deadScreenImage.color;
+            Color currentTextColor = deadScreenText.color;
+            Color spriteColors = new Color();
+            foreach(SpriteRenderer sprite in sprites)
+            {
+                spriteColors = sprite.color;
+            }
+            while (true)
+            {
+                timeSinceStarted = Time.time - timeStarted;
+                percentageComplete = timeSinceStarted / 2;
+                currentColor.a = Mathf.Lerp(0, 1, percentageComplete);
+                deadScreenImage.color = currentColor;
+                currentTextColor.a = Mathf.Lerp(0, 1, percentageComplete);
+                deadScreenText.color = currentTextColor;
+                foreach(SpriteRenderer sprite in sprites)
+                {
+                    spriteColors.a = Mathf.Lerp(0, 1, percentageComplete);
+                    sprite.color = spriteColors;
+                }
+                if (percentageComplete >= 1)
+                {
+                    break;
+                }
+                yield return new WaitForEndOfFrame();
             }
         }
     }
