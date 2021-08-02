@@ -17,8 +17,8 @@ namespace MetroidvaniaTools
         {
             base.Initialization();
             character = GetComponent<Character>();
-            dashAbility = PlayerPrefs.GetInt("DashAbility") == 1 ? true : false;
-            wallJumpAbility = PlayerPrefs.GetInt("WallJumpAbility") == 1 ? true : false;
+            dashAbility = PlayerPrefs.GetInt(" " + character.gameFile + "DashAbility") == 1 ? true : false;
+            wallJumpAbility = PlayerPrefs.GetInt(" " + character.gameFile + "WallJumpAbility") == 1 ? true : false;
             TurnOnAbilities();
         }
 
@@ -26,13 +26,13 @@ namespace MetroidvaniaTools
         {
             dashAbility = true;
             dash.enabled = true;
-            PlayerPrefs.SetInt("DashAbility", dashAbility ? 1 : 0);
+            PlayerPrefs.SetInt(" " + character.gameFile + "DashAbility", dashAbility ? 1 : 0);
         }
 
         public virtual void WallJumpAbility()
         {
             jump.wallJumpAbility = true;
-            PlayerPrefs.SetInt("WallJumpAbility", jump.wallJumpAbility ? 1 : 0);
+            PlayerPrefs.SetInt(" " + character.gameFile + "WallJumpAbility", jump.wallJumpAbility ? 1 : 0);
         }
 
         public virtual void TurnOnAbilities()

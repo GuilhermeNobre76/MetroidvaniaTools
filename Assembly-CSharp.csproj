@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Map\BigMap.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\EnemyWeapon.cs" />
     <Compile Include="Assets\Scripts\Stats\Items\AbilityPickup.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\AreYouSureFinder.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerIndicatorMovement.cs" />
     <Compile Include="Assets\Scripts\AIScripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\AIScripts\AIManagers.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Managers\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Testing.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Managers\PlayerPrefsX.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Map\GamePausedFinder.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Character.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Platforms\MoveablePlatform.cs" />
     <Compile Include="Assets\Scripts\Stats\Items\ItemType.cs" />
@@ -115,8 +117,9 @@
     <Compile Include="Assets\Scripts\AIScripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Map\PlayerBlip.cs" />
     <Compile Include="Assets\Scripts\Stats\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\AreYouSureFinder.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\Map\GamePausedFinder.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\TitleScreen.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\MenuSlot.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Managers\SaveGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -15,7 +15,7 @@ namespace MetroidvaniaTools
         protected FogOfWar[] fog;
         protected List<FogOfWar> fogTiles = new List<FogOfWar>();
         protected List<int> id = new List<int>();
-        protected int[] tileID;
+        public int[] tileID;
 
         public Transform fogSpawnLocation;
         public GameObject fogOfWar;
@@ -25,17 +25,31 @@ namespace MetroidvaniaTools
         private Vector3 startingLocation;
         private Vector3 playerIndicatorLocation;
 
+        [HideInInspector]
+        public bool loadFromSave;
+
         protected virtual void Awake()
         {
-            if(availableSpawnLocations.Count <= PlayerPrefs.GetInt("SpawnReference"))
+            int gameFile = PlayerPrefs.GetInt("GameFile");
+            loadFromSave = PlayerPrefs.GetInt(" " + gameFile + "LoadFromSave") == 1 ? true : false;
+            if (loadFromSave)
+            {
+                startingLocation = availableSpawnLocations[PlayerPrefs.GetInt(" " + gameFile + "SaveSpawnReference")].position;
+                playerIndicatorLocation = playerIndicatorSpawnLocations[PlayerPrefs.GetInt(" " + gameFile + "SaveSpawnReference")].position;
+
+            }
+            if (availableSpawnLocations.Count <= PlayerPrefs.GetInt(" " + gameFile + "SpawnReference"))
             {
                 startingLocation = availableSpawnLocations[0].position;
                 playerIndicatorLocation = playerIndicatorSpawnLocations[0].position;
             }
             else
             {
-                startingLocation = availableSpawnLocations[PlayerPrefs.GetInt("SpawnReference")].position;
-                playerIndicatorLocation = playerIndicatorSpawnLocations[PlayerPrefs.GetInt("SpawnReference")].position;
+                if (!loadFromSave)
+                {
+                    startingLocation = availableSpawnLocations[PlayerPrefs.GetInt(" " + gameFile + "SpawnReference")].position;
+                    playerIndicatorLocation = playerIndicatorSpawnLocations[PlayerPrefs.GetInt(" " + gameFile + "SpawnReference")].position;
+                }
                 CreatePlayer(initialPlayer, startingLocation);
                 Instantiate(fogOfWar, fogSpawnLocation.position, Quaternion.identity);
                 fog = FindObjectsOfType<FogOfWar>();
@@ -44,6 +58,9 @@ namespace MetroidvaniaTools
         protected override void Initialization()
         {
             base.Initialization();
+            int gameFile = PlayerPrefs.GetInt("GameFile");
+            loadFromSave = false;
+            PlayerPrefs.SetInt(" " + gameFile + "LoadFromSave", levelManager.loadFromSave ? 1 : 0);
             playerIndicator.transform.position = playerIndicatorLocation;
             StartCoroutine(FadeIn());
             for (int i = 0; i < fog.Length; i++)
@@ -51,7 +68,7 @@ namespace MetroidvaniaTools
                 fogTiles.Add(fog[i]);
             }
 
-            int[] numberArray = PlayerPrefsX.GetIntArray("TilesToRemove");
+            int[] numberArray = PlayerPrefsX.GetIntArray(" " + gameFile + "TilesToRemove");
             foreach (int number in numberArray)
             {
                 id.Add(number);
@@ -67,15 +84,16 @@ namespace MetroidvaniaTools
         protected virtual void OnDisable()
         {
             tileID = id.ToArray();
-            PlayerPrefsX.SetIntArray("TilesToRemove", tileID);
-            PlayerPrefs.SetInt("FacingLeft", character.isFacingLeft ? 1 : 0);
+            PlayerPrefsX.SetIntArray(" " + character.gameFile + "TilesToRemove", tileID);
+            PlayerPrefs.SetInt(" " + character.gameFile + "FacingLeft", character.isFacingLeft ? 1 : 0);
         }
         public virtual void NextScene(SceneReference scene, int spawnReference)
         {
             tileID = id.ToArray();
-            PlayerPrefsX.SetIntArray("TilesToRemove", tileID);
-            PlayerPrefs.SetInt("FacingLeft", character.isFacingLeft ? 1 : 0);
-            PlayerPrefs.SetInt("SpawnReference", spawnReference);
+            PlayerPrefsX.SetIntArray(" " + character.gameFile + "TilesToRemove", tileID);
+            PlayerPrefs.SetInt(" " + character.gameFile + "FacingLeft", character.isFacingLeft ? 1 : 0);
+            PlayerPrefs.SetInt(" " + character.gameFile + "SpawnReference", spawnReference);
+            PlayerPrefs.SetInt(" " + character.gameFile + "CurrentHealth", player.GetComponent<PlayerHealth>().healthPoints);
             StartCoroutine(FadeOut(scene));
         }
         protected virtual IEnumerator FadeIn()

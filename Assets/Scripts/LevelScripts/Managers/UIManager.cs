@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MetroidvaniaTools
 {
     public class UIManager : Managers
     {
+        public SceneReference mainMenuScene;
+
         protected GameObject miniMap;
         protected GameObject bigMap;
         [HideInInspector]
@@ -95,6 +98,7 @@ namespace MetroidvaniaTools
         }
         public virtual void SureToQuit()
         {
+            SceneManager.LoadScene(mainMenuScene);
             Time.timeScale = originalTimeScale;
             gameManager.gamePaused = false;
         }

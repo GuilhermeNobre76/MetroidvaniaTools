@@ -16,7 +16,7 @@ namespace MetroidvaniaTools
             slider = GetComponent<Slider>();
             playerHealth = player.GetComponent<PlayerHealth>();
             slider.maxValue = playerHealth.maxHealthPoints;
-            slider.value = playerHealth.maxHealthPoints;
+            slider.value = PlayerPrefs.GetInt(" " + character.gameFile + "CurrentHealth");
         }
 
         private void LateUpdate()

@@ -26,6 +26,8 @@ namespace MetroidvaniaTools
         public bool isOnLadder;
         [HideInInspector]
         public bool isDead;
+        [HideInInspector]
+        public int gameFile;
 
         protected Collider2D col;
         protected Rigidbody2D rb;
@@ -52,6 +54,7 @@ namespace MetroidvaniaTools
 
         protected virtual void Initialization()
         {
+            gameFile = PlayerPrefs.GetInt("GameFile");
             col = GetComponent<Collider2D>();
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
@@ -107,7 +110,7 @@ namespace MetroidvaniaTools
         public void InitializePlayer()
         {
             player = FindObjectOfType<Character>().gameObject;
-            player.GetComponent<Character>().isFacingLeft = PlayerPrefs.GetInt("FacingLeft") == 1 ? true : false;
+            player.GetComponent<Character>().isFacingLeft = PlayerPrefs.GetInt(" " + gameFile + "FacingLeft") == 1 ? true : false;
             if (player.GetComponent<Character>().isFacingLeft)
             {
                 player.transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);

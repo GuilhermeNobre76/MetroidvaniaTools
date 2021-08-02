@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace MetroidvaniaTools
 {
@@ -151,6 +152,14 @@ namespace MetroidvaniaTools
                 }
                 yield return new WaitForEndOfFrame();
             }
+            Invoke("LoadGame", 2);
+        }
+        public virtual void LoadGame()
+        {
+            levelManager.loadFromSave = true;
+            PlayerPrefs.SetInt(" " + character.gameFile + "LoadFromSave", levelManager.loadFromSave ? 1 : 0);
+            string scene = PlayerPrefs.GetString(" " + character.gameFile + "LoadGame");
+            SceneManager.LoadScene(scene);
         }
     }
 }

@@ -53,9 +53,12 @@ MonoBehaviour:
     m_Extent: {x: 63, y: 12, z: 0}
   initialPlayer: {fileID: 1443110505493631608, guid: dee35afb70d1be342a6f5a3dca2b9f73, type: 3}
   fadeScreen: {fileID: 0}
+  tileID: 
   fogSpawnLocation: {fileID: 0}
   fogOfWar: {fileID: 2253446609265586891, guid: 25b9f3c73c9bd8a43bceaa49dd02af62, type: 3}
   availableSpawnLocations:
   - {fileID: 0}
+  - {fileID: 0}
   playerIndicatorSpawnLocations:
   - {fileID: 0}
+  loadFromSave: 0
