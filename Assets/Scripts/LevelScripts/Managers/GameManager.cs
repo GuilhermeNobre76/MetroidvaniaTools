@@ -56,5 +56,19 @@ namespace MetroidvaniaTools
             Instantiate(initialPlayer, new Vector3(location.x, location.y, 0), Quaternion.identity);
             initialPlayer.GetComponent<Character>().InitializePlayer();
         }
+
+        public virtual void ChangeCharacter(GameObject currentCharacter)
+        {
+            GameObject oldPlayer = player;
+            GameObject newPlayer = currentCharacter;
+            Instantiate(newPlayer, player.transform.position, player.transform.rotation);
+            Destroy(oldPlayer);
+        }
+
+        protected virtual void UpdateCharacter()
+        {
+            player = FindObjectOfType<Character>().gameObject;
+        }
+
     }
 }

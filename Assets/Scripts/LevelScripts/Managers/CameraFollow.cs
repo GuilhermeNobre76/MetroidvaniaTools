@@ -34,6 +34,8 @@ namespace MetroidvaniaTools
         }
         protected virtual void FollowPlayer()
         {
+
+
             if (character.isJumping)
             {
                 float newAdjustment = originalYAdjustment;

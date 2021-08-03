@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MetroidvaniaTools
@@ -96,6 +97,11 @@ namespace MetroidvaniaTools
         }
         public virtual bool Falling(float velocity)
         {
+            if (rb == null)
+            {
+                Start();
+            }
+
             if (!isGrounded && rb.velocity.y < velocity)
             {
                 return true;
